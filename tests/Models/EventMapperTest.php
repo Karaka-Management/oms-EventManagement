@@ -12,7 +12,7 @@
  */
 declare(strict_types=1);
 
-namespace Modules\tests\EventManagement\Models;
+namespace Modules\EventManagement\tests\Models;
 
 use Modules\Admin\Models\NullAccount;
 use Modules\EventManagement\Models\Event;

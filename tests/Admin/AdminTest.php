@@ -12,7 +12,7 @@
  */
 declare(strict_types=1);
 
-namespace Modules\tests\EventManagement\Admin;
+namespace Modules\EventManagement\tests\Admin;
 
 /**
  * @internal
