@@ -57,6 +57,7 @@ final class BackendController extends Controller
         $view->setTemplate('/Modules/EventManagement/Theme/Backend/eventmanagement-list');
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1004201001, $request, $response));
 
+        /** @var \Modules\EventManagement\Models\Event[] $events */
         $events = EventMapper::getNewest(25);
         $view->addData('events', $events);
 
@@ -118,6 +119,7 @@ final class BackendController extends Controller
         $mediaListView->setTemplate('/Modules/Media/Theme/Backend/Components/Media/list');
         $view->addData('medialist', $mediaListView);
 
+        /** @var \Modules\EventManagement\Models\Event $event */
         $event = EventMapper::get((int) $request->getData('id'));
         $view->addData('event', $event);
 
