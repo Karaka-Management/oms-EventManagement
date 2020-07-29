@@ -24,17 +24,14 @@ echo $this->getData('nav')->render(); ?>
 
 <div class="row">
     <div class="col-xs-12">
-        <div class="box wf-100">
+        <div class="portlet">
+            <div class="portlet-head"><?= $this->getHtml('Events'); ?><i class="fa fa-download floatRight download btn"></i></div>
             <table class="default">
-                <caption><?= $this->getHtml('Events'); ?><i class="fa fa-download floatRight download btn"></i></caption>
                 <thead>
                 <tr>
                     <td class="wf-100"><?= $this->getHtml('Title') ?>
                     <td><?= $this->getHtml('Start') ?>
                     <td><?= $this->getHtml('End') ?>
-                <tfoot>
-                <tr>
-                    <td colspan="5">
                 <tbody>
                 <?php $count = 0; foreach ($events as $key => $value) : ++$count;
                 $url = \phpOMS\Uri\UriFactory::build('{/prefix}eventmanagement/profile?{?}&id=' . $value->getId());?>
