@@ -52,6 +52,7 @@ class Event
      * @since 1.0.0
      */
     private string $name = '';
+
     /**
      * Description.
      *
@@ -125,7 +126,7 @@ class Event
         return $this->id;
     }
 
-   /**
+    /**
      * Get media files.
      *
      * @return array
