@@ -15,7 +15,6 @@ declare(strict_types=1);
 namespace Modules\EventManagement\Controller;
 
 use Modules\EventManagement\Models\EventMapper;
-
 use phpOMS\Asset\AssetType;
 use phpOMS\Contract\RenderableInterface;
 use phpOMS\Message\RequestAbstract;

@@ -12,7 +12,6 @@
  */
 declare(strict_types=1);
 
-
 $event = $this->getData('event');
 $tasks = $event->getTasks();
 
