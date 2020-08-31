@@ -60,16 +60,16 @@ final class EventMapper extends DataMapperAbstract
      */
     protected static array $hasMany = [
         'tasks' => [
-            'mapper' => TaskMapper::class,
-            'table'  => 'eventmanagement_task_relation',
+            'mapper'   => TaskMapper::class,
+            'table'    => 'eventmanagement_task_relation',
             'external' => 'eventmanagement_task_relation_dst',
-            'self'   => 'eventmanagement_task_relation_src',
+            'self'     => 'eventmanagement_task_relation_src',
         ],
         'media' => [
-            'mapper' => MediaMapper::class,
-            'table'  => 'eventmanagement_event_media',
+            'mapper'   => MediaMapper::class,
+            'table'    => 'eventmanagement_event_media',
             'external' => 'eventmanagement_event_media_src',
-            'self'   => 'eventmanagement_event_media_dst',
+            'self'     => 'eventmanagement_event_media_dst',
         ],
     ];
 
