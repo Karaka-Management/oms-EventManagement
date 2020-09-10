@@ -83,7 +83,7 @@ class Event
      * @var \DateTime
      * @since 1.0.0
      */
-    private \DateTime $createdAt;
+    private \DateTimeImmutable $createdAt;
 
     /**
      * Creator.
@@ -108,7 +108,7 @@ class Event
         $this->costs     = new Money();
         $this->budget    = new Money();
         $this->earnings  = new Money();
-        $this->createdAt = new \DateTime('now');
+        $this->createdAt = new \DateTimeImmutable('now');
         $this->createdBy = new NullAccount();
 
         $this->setName($name);
@@ -511,7 +511,7 @@ class Event
      *
      * @since 1.0.0
      */
-    public function getCreatedAt() : \DateTime
+    public function getCreatedAt() : \DateTimeInterface
     {
         return $this->createdAt;
     }

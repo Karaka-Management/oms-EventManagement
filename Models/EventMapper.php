@@ -49,7 +49,7 @@ final class EventMapper extends DataMapperAbstract
         'eventmanagement_event_budget'        => ['name' => 'eventmanagement_event_budget',        'type' => 'Serializable', 'internal' => 'budget'],
         'eventmanagement_event_earnings'      => ['name' => 'eventmanagement_event_earnings',      'type' => 'Serializable', 'internal' => 'earnings'],
         'eventmanagement_event_created_by'    => ['name' => 'eventmanagement_event_created_by',    'type' => 'int',          'internal' => 'createdBy', 'readonly' => true],
-        'eventmanagement_event_created_at'    => ['name' => 'eventmanagement_event_created_at',    'type' => 'DateTime',     'internal' => 'createdAt', 'readonly' => true],
+        'eventmanagement_event_created_at'    => ['name' => 'eventmanagement_event_created_at',    'type' => 'DateTimeImmutable', 'internal' => 'createdAt', 'readonly' => true],
     ];
 
     /**
