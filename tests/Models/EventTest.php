@@ -25,6 +25,10 @@ use phpOMS\Localization\Money;
  */
 class EventTest extends \PHPUnit\Framework\TestCase
 {
+    /**
+     * @covers Modules\EventManagement\Models\Event
+     * @group module
+     */
     public function testDefault() : void
     {
         $event = new Event();
@@ -43,6 +47,10 @@ class EventTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(ProgressType::MANUAL, $event->getProgressType());
     }
 
+    /**
+     * @covers Modules\EventManagement\Models\Event
+     * @group module
+     */
     public function testSetGet() : void
     {
         $event = new Event();
