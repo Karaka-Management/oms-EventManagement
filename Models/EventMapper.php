@@ -62,14 +62,14 @@ final class EventMapper extends DataMapperAbstract
         'tasks' => [
             'mapper'   => TaskMapper::class,
             'table'    => 'eventmanagement_task_relation',
-            'external' => 'eventmanagement_task_relation_dst',
-            'self'     => 'eventmanagement_task_relation_src',
+            'external' => 'eventmanagement_task_relation_src',
+            'self'     => 'eventmanagement_task_relation_dst',
         ],
         'media' => [
             'mapper'   => MediaMapper::class,
             'table'    => 'eventmanagement_event_media',
-            'external' => 'eventmanagement_event_media_src',
-            'self'     => 'eventmanagement_event_media_dst',
+            'external' => 'eventmanagement_event_media_dst',
+            'self'     => 'eventmanagement_event_media_src',
         ],
     ];
 
@@ -82,7 +82,7 @@ final class EventMapper extends DataMapperAbstract
     protected static array $ownsOne = [
         'calendar' => [
             'mapper' => \Modules\Calendar\Models\CalendarMapper::class,
-            'self'   => 'eventmanagement_event_calendar',
+            'external'   => 'eventmanagement_event_calendar',
         ],
     ];
 
@@ -95,7 +95,7 @@ final class EventMapper extends DataMapperAbstract
     protected static array $belongsTo = [
         'createdBy' => [
             'mapper' => AccountMapper::class,
-            'self'   => 'eventmanagement_event_created_by',
+            'external'   => 'eventmanagement_event_created_by',
         ],
     ];
 
