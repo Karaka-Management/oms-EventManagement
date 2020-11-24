@@ -38,9 +38,9 @@ class EventMapperTest extends \PHPUnit\Framework\TestCase
         $event = new Event();
 
         $event->setType(EventType::SEMINAR);
-        $event->name = 'Eventname';
+        $event->name        = 'Eventname';
         $event->description = 'Event description';
-        $event->createdBy = new NullAccount(1);
+        $event->createdBy   = new NullAccount(1);
         $event->setStart(new \DateTime('2000-05-05'));
         $event->setEnd(new \DateTime('2005-05-05'));
 
@@ -51,11 +51,11 @@ class EventMapperTest extends \PHPUnit\Framework\TestCase
         $event->setBudget($money);
         $event->setEarnings($money);
 
-        $task = new Task();
+        $task        = new Task();
         $task->title = 'EventTask 1';
         $task->setCreatedBy(new NullAccount(1));
 
-        $task2 = new Task();
+        $task2        = new Task();
         $task2->title = 'EventTask 2';
         $task2->setCreatedBy(new NullAccount(1));
 
@@ -65,13 +65,13 @@ class EventMapperTest extends \PHPUnit\Framework\TestCase
         $event->setProgress(11);
         $event->setProgressType(ProgressType::TASKS);
 
-        $media = new Media();
-        $media->createdBy = new NullAccount(1);
+        $media              = new Media();
+        $media->createdBy   = new NullAccount(1);
         $media->description = 'desc';
         $media->setPath('some/path');
-        $media->size = 11;
+        $media->size      = 11;
         $media->extension = 'png';
-        $media->name = 'Event Media';
+        $media->name      = 'Event Media';
         $event->addMedia($media);
 
         $id = EventMapper::create($event);
@@ -121,9 +121,9 @@ class EventMapperTest extends \PHPUnit\Framework\TestCase
             $event = new Event();
 
             $event->setType(EventType::SEMINAR);
-            $event->name = $text->generateText(\mt_rand(3, 7));
+            $event->name        = $text->generateText(\mt_rand(3, 7));
             $event->description = $text->generateText(\mt_rand(20, 100));
-            $event->createdBy = new NullAccount(1);
+            $event->createdBy   = new NullAccount(1);
             $event->setStart(new \DateTime('2000-05-05'));
             $event->setEnd(new \DateTime('2005-05-05'));
             $event->setProgress(\mt_rand(0, 100));

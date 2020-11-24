@@ -70,7 +70,7 @@ class EventTest extends \PHPUnit\Framework\TestCase
         $event->setEarnings($money);
         self::assertEquals($money->getAmount(), $event->getEarnings()->getAmount());
 
-        $task = new Task();
+        $task        = new Task();
         $task->title = 'A';
 
         $event->addTask($task);
