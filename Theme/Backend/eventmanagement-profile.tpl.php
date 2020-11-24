@@ -32,7 +32,7 @@ echo $this->getData('nav')->render(); ?>
                         <tr><td><input type="datetime-local" id="iStart" name="start" value="<?= $this->printHtml($event->getStart()->format('Y-m-d\TH:i:s')); ?>">
                             <td><input type="datetime-local" id="iEnd" name="end" value="<?= $this->printHtml($event->getEnd()->format('Y-m-d\TH:i:s')); ?>">
                         <tr><td colspan="2"><label for="iDescription"><?= $this->getHtml('Description'); ?></label>
-                        <tr><td colspan="2"><textarea id="iDescription" name="desc"><?= $this->printHtml($event->getDescription()); ?></textarea>
+                        <tr><td colspan="2"><textarea id="iDescription" name="desc"><?= $this->printHtml($event->description); ?></textarea>
                         <tr><td colspan="2"><label for="iProgressType"><?= $this->getHtml('Progress'); ?></label>
                         <tr><td><select id="iProgressType" name="progressType">
                                     <option value="<?= \Modules\EventManagement\Models\ProgressType::MANUAL; ?>"><?= $this->getHtml('Manual'); ?>

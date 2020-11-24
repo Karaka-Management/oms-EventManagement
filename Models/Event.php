@@ -51,7 +51,7 @@ class Event
      * @var string
      * @since 1.0.0
      */
-    private string $name = '';
+    public string $name = '';
 
     /**
      * Description.
@@ -59,7 +59,7 @@ class Event
      * @var string
      * @since 1.0.0
      */
-    private string $description = '';
+    public string $description = '';
 
     private $calendar = null;
 
@@ -83,7 +83,7 @@ class Event
      * @var \DateTimeImmutable
      * @since 1.0.0
      */
-    private \DateTimeImmutable $createdAt;
+    public \DateTimeImmutable $createdAt;
 
     /**
      * Creator.
@@ -91,7 +91,7 @@ class Event
      * @var Account
      * @since 1.0.0
      */
-    private Account $createdBy;
+    public Account $createdBy;
 
     /**
      * Constructor.
@@ -111,7 +111,7 @@ class Event
         $this->createdAt = new \DateTimeImmutable('now');
         $this->createdBy = new NullAccount();
 
-        $this->setName($name);
+        $this->name = $name;
     }
 
     /**
@@ -266,58 +266,6 @@ class Event
     public function getCalendar() : Calendar
     {
         return $this->calendar;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description Description
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setDescription(string $description) : void
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     *
-     * @since 1.0.0
-     */
-    public function getDescription() : string
-    {
-        return $this->description;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name Name
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setName(string $name) : void
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     *
-     * @since 1.0.0
-     */
-    public function getName() : string
-    {
-        return $this->name;
     }
 
     /**
@@ -502,41 +450,5 @@ class Event
     public function setEarnings(Money $earnings) : void
     {
         $this->earnings = $earnings;
-    }
-
-    /**
-     * get created at
-     *
-     * @return \DateTimeImmutable
-     *
-     * @since 1.0.0
-     */
-    public function getCreatedAt() : \DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Get creator
-     *
-     * @return Account
-     *
-     * @since 1.0.0
-     */
-    public function getCreatedBy() : Account
-    {
-        return $this->createdBy;
-    }
-
-    /**
-     * Set creator
-     *
-     * @param Account $createdBy Creator
-     *
-     * @since 1.0.0
-     */
-    public function setCreatedBy(Account $createdBy) : void
-    {
-        $this->createdBy = $createdBy;
     }
 }

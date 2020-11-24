@@ -35,7 +35,7 @@ echo $this->getData('nav')->render(); ?>
                 <?php $count = 0; foreach ($events as $key => $value) : ++$count;
                 $url         = \phpOMS\Uri\UriFactory::build('{/prefix}eventmanagement/profile?{?}&id=' . $value->getId()); ?>
                 <tr tabindex="0" data-href="<?= $url; ?>">
-                    <td data-label="<?= $this->getHtml('Name'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($value->getName()); ?></a>
+                    <td data-label="<?= $this->getHtml('Name'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($value->name); ?></a>
                     <td data-label="<?= $this->getHtml('Start'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($value->getStart()->format('Y-m-d')); ?></a>
                     <td data-label="<?= $this->getHtml('End'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($value->getEnd()->format('Y-m-d')); ?></a>
                 <?php endforeach; ?>

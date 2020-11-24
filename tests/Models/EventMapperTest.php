@@ -38,9 +38,9 @@ class EventMapperTest extends \PHPUnit\Framework\TestCase
         $event = new Event();
 
         $event->setType(EventType::SEMINAR);
-        $event->setName('Eventname');
-        $event->setDescription('Event description');
-        $event->setCreatedBy(new NullAccount(1));
+        $event->name = 'Eventname';
+        $event->description = 'Event description';
+        $event->createdBy = new NullAccount(1);
         $event->setStart(new \DateTime('2000-05-05'));
         $event->setEnd(new \DateTime('2005-05-05'));
 
@@ -52,11 +52,11 @@ class EventMapperTest extends \PHPUnit\Framework\TestCase
         $event->setEarnings($money);
 
         $task = new Task();
-        $task->setTitle('EventTask 1');
+        $task->title = 'EventTask 1';
         $task->setCreatedBy(new NullAccount(1));
 
         $task2 = new Task();
-        $task2->setTitle('EventTask 2');
+        $task2->title = 'EventTask 2';
         $task2->setCreatedBy(new NullAccount(1));
 
         $event->addTask($task);
@@ -66,12 +66,12 @@ class EventMapperTest extends \PHPUnit\Framework\TestCase
         $event->setProgressType(ProgressType::TASKS);
 
         $media = new Media();
-        $media->setCreatedBy(new NullAccount(1));
-        $media->setDescription('desc');
+        $media->createdBy = new NullAccount(1);
+        $media->description = 'desc';
         $media->setPath('some/path');
-        $media->setSize(11);
-        $media->setExtension('png');
-        $media->setName('Event Media');
+        $media->size = 11;
+        $media->extension = 'png';
+        $media->name = 'Event Media';
         $event->addMedia($media);
 
         $id = EventMapper::create($event);
@@ -80,8 +80,8 @@ class EventMapperTest extends \PHPUnit\Framework\TestCase
 
         $eventR = EventMapper::get($event->getId());
 
-        self::assertEquals($event->getName(), $eventR->getName());
-        self::assertEquals($event->getDescription(), $eventR->getDescription());
+        self::assertEquals($event->name, $eventR->name);
+        self::assertEquals($event->description, $eventR->description);
         self::assertEquals($event->countTasks(), $eventR->countTasks());
         self::assertEquals($event->getStart()->format('Y-m-d'), $eventR->getStart()->format('Y-m-d'));
         self::assertEquals($event->getEnd()->format('Y-m-d'), $eventR->getEnd()->format('Y-m-d'));
@@ -94,7 +94,7 @@ class EventMapperTest extends \PHPUnit\Framework\TestCase
         $expected = $event->getMedia();
         $actual   = $eventR->getMedia();
 
-        self::assertEquals(\end($expected)->getName(), \end($actual)->getName());
+        self::assertEquals(\end($expected)->name, \end($actual)->name);
     }
 
     /**
@@ -121,9 +121,9 @@ class EventMapperTest extends \PHPUnit\Framework\TestCase
             $event = new Event();
 
             $event->setType(EventType::SEMINAR);
-            $event->setName($text->generateText(\mt_rand(3, 7)));
-            $event->setDescription($text->generateText(\mt_rand(20, 100)));
-            $event->setCreatedBy(new NullAccount(1));
+            $event->name = $text->generateText(\mt_rand(3, 7));
+            $event->description = $text->generateText(\mt_rand(20, 100));
+            $event->createdBy = new NullAccount(1);
             $event->setStart(new \DateTime('2000-05-05'));
             $event->setEnd(new \DateTime('2005-05-05'));
             $event->setProgress(\mt_rand(0, 100));
