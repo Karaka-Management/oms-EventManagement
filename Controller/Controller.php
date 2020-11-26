@@ -16,7 +16,6 @@ namespace Modules\EventManagement\Controller;
 
 use Modules\EventManagement\Models\Event;
 use phpOMS\Module\ModuleAbstract;
-use phpOMS\Module\WebInterface;
 
 /**
  * Event Management controller class.
