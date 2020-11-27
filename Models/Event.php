@@ -41,9 +41,9 @@ class Event
 
     private int $type = EventType::DEFAULT;
 
-    private $start = null;
+    public \DateTime $start;
 
-    private $end = null;
+    public \DateTime $end;
 
     /**
      * Name.
@@ -61,21 +61,21 @@ class Event
      */
     public string $description = '';
 
-    private $calendar = null;
+    public Calendar $calendar;
 
-    private $costs = null;
+    public Money $costs;
 
-    private $budget = null;
+    public Money $budget;
 
-    private $earnings = null;
+    public Money $earnings;
 
-    private $tasks = [];
+    private array $tasks = [];
 
-    private $media = [];
+    private array $media = [];
 
-    private $progress = 0;
+    private int $progress = 0;
 
-    private $progressType = ProgressType::MANUAL;
+    private int $progressType = ProgressType::MANUAL;
 
     /**
      * Created.
