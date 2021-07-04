@@ -17,7 +17,7 @@ namespace Modules\EventManagement\Models;
 use phpOMS\Stdlib\Base\Enum;
 
 /**
- * Task type enum.
+ * Progress type enum.
  *
  * @package Modules\EventManagement\Models
  * @license OMS License 1.0
