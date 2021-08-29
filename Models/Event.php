@@ -39,10 +39,28 @@ class Event
      */
     private int $id = 0;
 
+    /**
+     * Type.
+     *
+     * @var int
+     * @since 1.0.0
+     */
     private int $type = EventType::DEFAULT;
 
+    /**
+     * Event start.
+     *
+     * @var \DateTime
+     * @since 1.0.0
+     */
     public \DateTime $start;
 
+    /**
+     * Event end.
+     *
+     * @var \DateTime
+     * @since 1.0.0
+     */
     public \DateTime $end;
 
     /**
@@ -61,20 +79,68 @@ class Event
      */
     public string $description = '';
 
-    public Calendar $calendar;
+    /**
+     * Calendar.
+     *
+     * @var Calendar
+     * @since 1.0.0
+     */
+    private Calendar $calendar;
 
-    public Money $costs;
+    /**
+     * Costs.
+     *
+     * @var Money
+     * @since 1.0.0
+     */
+    private Money $costs;
 
-    public Money $budget;
+    /**
+     * Budget.
+     *
+     * @var Money
+     * @since 1.0.0
+     */
+    private Money $budget;
 
-    public Money $earnings;
+    /**
+     * Earnings.
+     *
+     * @var Money
+     * @since 1.0.0
+     */
+    private Money $earnings;
 
+    /**
+     * Tasks.
+     *
+     * @var Task[]
+     * @since 1.0.0
+     */
     private array $tasks = [];
 
+    /**
+     * Media.
+     *
+     * @var Media[]
+     * @since 1.0.0
+     */
     private array $media = [];
 
+    /**
+     * Progress (0-100).
+     *
+     * @var int
+     * @since 1.0.0
+     */
     private int $progress = 0;
 
+    /**
+     * Progress type.
+     *
+     * @var int
+     * @since 1.0.0
+     */
     private int $progressType = ProgressType::MANUAL;
 
     /**
