@@ -122,7 +122,7 @@ class Event
     /**
      * Media.
      *
-     * @var Media[]
+     * @var \Modules\Media\Models\Media[]
      * @since 1.0.0
      */
     private array $media = [];
