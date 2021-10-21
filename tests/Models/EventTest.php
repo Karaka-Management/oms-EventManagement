@@ -23,7 +23,7 @@ use phpOMS\Localization\Money;
 /**
  * @internal
  */
-class EventTest extends \PHPUnit\Framework\TestCase
+final class EventTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @covers Modules\EventManagement\Models\Event

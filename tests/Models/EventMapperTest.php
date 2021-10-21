@@ -27,7 +27,7 @@ use phpOMS\Utils\RnG\Text;
 /**
  * @internal
  */
-class EventMapperTest extends \PHPUnit\Framework\TestCase
+final class EventMapperTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @covers Modules\EventManagement\Models\EventMapper
