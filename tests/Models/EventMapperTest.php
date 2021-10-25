@@ -41,15 +41,15 @@ final class EventMapperTest extends \PHPUnit\Framework\TestCase
         $event->name        = 'Eventname';
         $event->description = 'Event description';
         $event->createdBy   = new NullAccount(1);
-        $event->setStart(new \DateTime('2000-05-05'));
-        $event->setEnd(new \DateTime('2005-05-05'));
+        $event->start = new \DateTime('2000-05-05');
+        $event->end = new \DateTime('2005-05-05');
 
         $money = new Money();
         $money->setString('1.23');
 
-        $event->setCosts($money);
-        $event->setBudget($money);
-        $event->setEarnings($money);
+        $event->costs = $money;
+        $event->budget = $money;
+        $event->earnings = $money;
 
         $task        = new Task();
         $task->title = 'EventTask 1';
@@ -62,7 +62,7 @@ final class EventMapperTest extends \PHPUnit\Framework\TestCase
         $event->addTask($task);
         $event->addTask($task2);
 
-        $event->setProgress(11);
+        $event->progress = 11;
         $event->setProgressType(ProgressType::TASKS);
 
         $media              = new Media();
@@ -83,12 +83,12 @@ final class EventMapperTest extends \PHPUnit\Framework\TestCase
         self::assertEquals($event->name, $eventR->name);
         self::assertEquals($event->description, $eventR->description);
         self::assertEquals($event->countTasks(), $eventR->countTasks());
-        self::assertEquals($event->getStart()->format('Y-m-d'), $eventR->getStart()->format('Y-m-d'));
-        self::assertEquals($event->getEnd()->format('Y-m-d'), $eventR->getEnd()->format('Y-m-d'));
-        self::assertEquals($event->getCosts()->getAmount(), $eventR->getCosts()->getAmount());
-        self::assertEquals($event->getBudget()->getAmount(), $eventR->getBudget()->getAmount());
-        self::assertEquals($event->getEarnings()->getAmount(), $eventR->getEarnings()->getAmount());
-        self::assertEquals($event->getProgress(), $eventR->getProgress());
+        self::assertEquals($event->start->format('Y-m-d'), $eventR->start->format('Y-m-d'));
+        self::assertEquals($event->end->format('Y-m-d'), $eventR->end->format('Y-m-d'));
+        self::assertEquals($event->costs->getAmount(), $eventR->costs->getAmount());
+        self::assertEquals($event->budget->getAmount(), $eventR->budget->getAmount());
+        self::assertEquals($event->earnings->getAmount(), $eventR->earnings->getAmount());
+        self::assertEquals($event->progress, $eventR->progress);
         self::assertEquals($event->getProgressType(), $eventR->getProgressType());
 
         $expected = $event->getMedia();
@@ -124,17 +124,17 @@ final class EventMapperTest extends \PHPUnit\Framework\TestCase
             $event->name        = $text->generateText(\mt_rand(3, 7));
             $event->description = $text->generateText(\mt_rand(20, 100));
             $event->createdBy   = new NullAccount(1);
-            $event->setStart(new \DateTime('2000-05-05'));
-            $event->setEnd(new \DateTime('2005-05-05'));
-            $event->setProgress(\mt_rand(0, 100));
+            $event->start = new \DateTime('2000-05-05');
+            $event->end = new \DateTime('2005-05-05');
+            $event->progress = \mt_rand(0, 100);
             $event->setProgressType(\mt_rand(0, 4));
 
             $money = new Money();
             $money->setString('1.23');
 
-            $event->setCosts($money);
-            $event->setBudget($money);
-            $event->setEarnings($money);
+            $event->costs = $money;
+            $event->budget = $money;
+            $event->earnings = $money;
 
             $id = EventMapper::create($event);
         }

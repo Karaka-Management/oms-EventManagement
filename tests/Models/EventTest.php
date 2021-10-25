@@ -18,6 +18,7 @@ use Modules\EventManagement\Models\Event;
 use Modules\EventManagement\Models\EventType;
 use Modules\EventManagement\Models\ProgressType;
 use Modules\Tasks\Models\Task;
+use Modules\Media\Models\Media;
 use phpOMS\Localization\Money;
 
 /**
@@ -25,67 +26,181 @@ use phpOMS\Localization\Money;
  */
 final class EventTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @covers Modules\EventManagement\Models\Event
-     * @group module
-     */
-    public function testDefault() : void
-    {
-        $event = new Event();
+    private Event $event;
 
-        self::assertEquals(0, $event->getId());
-        self::assertEquals(EventType::DEFAULT, $event->getType());
-        self::assertInstanceOf('\Modules\Calendar\Models\Calendar', $event->getCalendar());
-        self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $event->getStart()->format('Y-m-d'));
-        self::assertEquals((new \DateTime('now'))->modify('+1 month')->format('Y-m-d'), $event->getEnd()->format('Y-m-d'));
-        self::assertEquals(0, $event->getCosts()->getInt());
-        self::assertEquals(0, $event->getBudget()->getInt());
-        self::assertEquals(0, $event->getEarnings()->getInt());
-        self::assertFalse($event->removeTask(2));
-        self::assertEmpty($event->getTasks());
-        self::assertEquals(0, $event->getProgress());
-        self::assertEquals(ProgressType::MANUAL, $event->getProgressType());
+    /**
+     * {@inheritdoc}
+     */
+    protected function setUp() : void
+    {
+        $this->event = new Event();
     }
 
     /**
      * @covers Modules\EventManagement\Models\Event
      * @group module
      */
-    public function testSetGet() : void
+    public function testDefault() : void
     {
-        $event = new Event();
+        self::assertEquals(0, $this->event->getId());
+        self::assertEquals(EventType::DEFAULT, $this->event->getType());
+        self::assertInstanceOf('\Modules\Calendar\Models\Calendar', $this->event->calendar);
+        self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $this->event->start->format('Y-m-d'));
+        self::assertEquals((new \DateTime('now'))->modify('+1 month')->format('Y-m-d'), $this->event->end->format('Y-m-d'));
+        self::assertEquals(0, $this->event->costs->getInt());
+        self::assertEquals(0, $this->event->budget->getInt());
+        self::assertEquals(0, $this->event->earnings->getInt());
+        self::assertFalse($this->event->removeTask(2));
+        self::assertEmpty($this->event->getTasks());
+        self::assertEmpty($this->event->getMedia());
+        self::assertInstanceOf('\Modules\Tasks\Models\NullTask', $this->event->getTask(1));
+        self::assertEquals(0, $this->event->progress);
+        self::assertEquals(ProgressType::MANUAL, $this->event->getProgressType());
+    }
 
-        $event->setType(EventType::SEMINAR);
-        self::assertEquals(EventType::SEMINAR, $event->getType());
+    /**
+     * @covers Modules\EventManagement\Models\Event
+     * @group module
+     */
+    public function testTypeInputOutput() : void
+    {
+        $this->event->setType(EventType::SEMINAR);
+        self::assertEquals(EventType::SEMINAR, $this->event->getType());
+    }
 
+    /**
+     * @covers Modules\EventManagement\Models\Event
+     * @group module
+     */
+    public function testInvalidTypeInputOutput() : void
+    {
+        $this->expectException(\phpOMS\Stdlib\Base\Exception\InvalidEnumValue::class);
+        $this->event->setType(999);
+    }
+
+    /**
+     * @covers Modules\EventManagement\Models\Event
+     * @group module
+     */
+    public function testCostsInputOutput() : void
+    {
         $money = new Money();
         $money->setString('1.23');
 
-        $event->setCosts($money);
-        self::assertEquals($money->getAmount(), $event->getCosts()->getAmount());
+        $this->event->costs = $money;
+        self::assertEquals($money->getAmount(), $this->event->costs->getAmount());
+    }
 
-        $event->setBudget($money);
-        self::assertEquals($money->getAmount(), $event->getBudget()->getAmount());
+    /**
+     * @covers Modules\EventManagement\Models\Event
+     * @group module
+     */
+    public function testBudgetInputOutput() : void
+    {
+        $money = new Money();
+        $money->setString('1.23');
 
-        $event->setEarnings($money);
-        self::assertEquals($money->getAmount(), $event->getEarnings()->getAmount());
+        $this->event->budget = $money;
+        self::assertEquals($money->getAmount(), $this->event->budget->getAmount());
+    }
 
+    /**
+     * @covers Modules\EventManagement\Models\Event
+     * @group module
+     */
+    public function testEarningsInputOutput() : void
+    {
+        $money = new Money();
+        $money->setString('1.23');
+
+        $this->event->earnings = $money;
+        self::assertEquals($money->getAmount(), $this->event->earnings->getAmount());
+    }
+
+    /**
+     * @covers Modules\EventManagement\Models\Event
+     * @group module
+     */
+    public function testMediaInputOutput() : void
+    {
+        $this->event->addMedia(new Media());
+        self::assertCount(1, $this->event->getMedia());
+    }
+
+    /**
+     * @covers Modules\EventManagement\Models\Event
+     * @group module
+     */
+    public function testTaskInputOutput() : void
+    {
         $task        = new Task();
         $task->title = 'A';
 
-        $event->addTask($task);
-        self::assertEquals('A', $event->getTask(0)->title);
+        $this->event->addTask($task);
+        self::assertEquals('A', $this->event->getTask(0)->title);
 
-        self::assertTrue($event->removeTask(0));
-        self::assertEquals(0, $event->countTasks());
+        self::assertTrue($this->event->removeTask(0));
+        self::assertEquals(0, $this->event->countTasks());
 
-        $event->addTask($task);
-        self::assertCount(1, $event->getTasks());
+        $this->event->addTask($task);
+        self::assertCount(1, $this->event->getTasks());
+    }
 
-        $event->setProgress(10);
-        self::assertEquals(10, $event->getProgress());
+    /**
+     * @covers Modules\EventManagement\Models\Event
+     * @group module
+     */
+    public function testProgressInputOutput() : void
+    {
+        $this->event->progress = 10;
+        self::assertEquals(10, $this->event->progress);
+    }
 
-        $event->setProgressType(ProgressType::TASKS);
-        self::assertEquals(ProgressType::TASKS, $event->getProgressType());
+    /**
+     * @covers Modules\EventManagement\Models\Event
+     * @group module
+     */
+    public function testProgressTypeInputOutput() : void
+    {
+        $this->event->setProgressType(ProgressType::TASKS);
+        self::assertEquals(ProgressType::TASKS, $this->event->getProgressType());
+    }
+
+    /**
+     * @covers Modules\EventManagement\Models\Event
+     * @group module
+     */
+    public function testSerialize() : void
+    {
+        $this->event->name = 'Name';
+        $this->event->description = 'Description';
+        $this->event->start = new \DateTime();
+        $this->event->end = new \DateTime();
+        $this->event->setType(EventType::SEMINAR);
+        $this->event->progress = 10;
+        $this->event->setProgressType(ProgressType::TASKS);
+
+        $serialized = $this->event->jsonSerialize();
+        unset($serialized['calendar']);
+        unset($serialized['createdAt']);
+
+        self::assertEquals(
+            [
+                'id'    => 0,
+                'type' => EventType::SEMINAR,
+                'start' => $this->event->start,
+                'end' => $this->event->end,
+                'name' => 'Name',
+                'description' => 'Description',
+                'costs' => new Money(),
+                'budget' => new Money(),
+                'earnings' => new Money(),
+                'tasks' => [],
+                'media' => [],
+                'progress' => 10,
+                'progressType' => ProgressType::TASKS,
+            ],
+            $serialized
+        );
     }
 }
