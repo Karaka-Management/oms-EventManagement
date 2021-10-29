@@ -41,14 +41,14 @@ final class EventMapperTest extends \PHPUnit\Framework\TestCase
         $event->name        = 'Eventname';
         $event->description = 'Event description';
         $event->createdBy   = new NullAccount(1);
-        $event->start = new \DateTime('2000-05-05');
-        $event->end = new \DateTime('2005-05-05');
+        $event->start       = new \DateTime('2000-05-05');
+        $event->end         = new \DateTime('2005-05-05');
 
         $money = new Money();
         $money->setString('1.23');
 
-        $event->costs = $money;
-        $event->budget = $money;
+        $event->costs    = $money;
+        $event->budget   = $money;
         $event->earnings = $money;
 
         $task        = new Task();
@@ -124,16 +124,16 @@ final class EventMapperTest extends \PHPUnit\Framework\TestCase
             $event->name        = $text->generateText(\mt_rand(3, 7));
             $event->description = $text->generateText(\mt_rand(20, 100));
             $event->createdBy   = new NullAccount(1);
-            $event->start = new \DateTime('2000-05-05');
-            $event->end = new \DateTime('2005-05-05');
-            $event->progress = \mt_rand(0, 100);
+            $event->start       = new \DateTime('2000-05-05');
+            $event->end         = new \DateTime('2005-05-05');
+            $event->progress    = \mt_rand(0, 100);
             $event->setProgressType(\mt_rand(0, 4));
 
             $money = new Money();
             $money->setString('1.23');
 
-            $event->costs = $money;
-            $event->budget = $money;
+            $event->costs    = $money;
+            $event->budget   = $money;
             $event->earnings = $money;
 
             $id = EventMapper::create($event);

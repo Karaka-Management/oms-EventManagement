@@ -17,8 +17,8 @@ namespace Modules\EventManagement\tests\Models;
 use Modules\EventManagement\Models\Event;
 use Modules\EventManagement\Models\EventType;
 use Modules\EventManagement\Models\ProgressType;
-use Modules\Tasks\Models\Task;
 use Modules\Media\Models\Media;
+use Modules\Tasks\Models\Task;
 use phpOMS\Localization\Money;
 
 /**
@@ -172,10 +172,10 @@ final class EventTest extends \PHPUnit\Framework\TestCase
      */
     public function testSerialize() : void
     {
-        $this->event->name = 'Name';
+        $this->event->name        = 'Name';
         $this->event->description = 'Description';
-        $this->event->start = new \DateTime();
-        $this->event->end = new \DateTime();
+        $this->event->start       = new \DateTime();
+        $this->event->end         = new \DateTime();
         $this->event->setType(EventType::SEMINAR);
         $this->event->progress = 10;
         $this->event->setProgressType(ProgressType::TASKS);
@@ -186,18 +186,18 @@ final class EventTest extends \PHPUnit\Framework\TestCase
 
         self::assertEquals(
             [
-                'id'    => 0,
-                'type' => EventType::SEMINAR,
-                'start' => $this->event->start,
-                'end' => $this->event->end,
-                'name' => 'Name',
-                'description' => 'Description',
-                'costs' => new Money(),
-                'budget' => new Money(),
-                'earnings' => new Money(),
-                'tasks' => [],
-                'media' => [],
-                'progress' => 10,
+                'id'           => 0,
+                'type'         => EventType::SEMINAR,
+                'start'        => $this->event->start,
+                'end'          => $this->event->end,
+                'name'         => 'Name',
+                'description'  => 'Description',
+                'costs'        => new Money(),
+                'budget'       => new Money(),
+                'earnings'     => new Money(),
+                'tasks'        => [],
+                'media'        => [],
+                'progress'     => 10,
                 'progressType' => ProgressType::TASKS,
             ],
             $serialized

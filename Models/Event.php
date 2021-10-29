@@ -17,8 +17,8 @@ namespace Modules\EventManagement\Models;
 use Modules\Admin\Models\Account;
 use Modules\Admin\Models\NullAccount;
 use Modules\Calendar\Models\Calendar;
-use Modules\Tasks\Models\Task;
 use Modules\Tasks\Models\NullTask;
+use Modules\Tasks\Models\Task;
 use phpOMS\Localization\Money;
 use phpOMS\Stdlib\Base\Exception\InvalidEnumValue;
 
@@ -353,21 +353,21 @@ class Event
     public function toArray() : array
     {
         return [
-            'id'    => $this->id,
-            'type' => $this->type,
-            'start' => $this->start,
-            'end' => $this->end,
-            'name' => $this->name,
-            'description' => $this->description,
-            'calendar' => $this->calendar,
-            'costs' => $this->costs,
-            'budget' => $this->budget,
-            'earnings' => $this->earnings,
-            'tasks' => $this->tasks,
-            'media' => $this->media,
-            'progress' => $this->progress,
+            'id'           => $this->id,
+            'type'         => $this->type,
+            'start'        => $this->start,
+            'end'          => $this->end,
+            'name'         => $this->name,
+            'description'  => $this->description,
+            'calendar'     => $this->calendar,
+            'costs'        => $this->costs,
+            'budget'       => $this->budget,
+            'earnings'     => $this->earnings,
+            'tasks'        => $this->tasks,
+            'media'        => $this->media,
+            'progress'     => $this->progress,
             'progressType' => $this->progressType,
-            'createdAt' => $this->createdAt,
+            'createdAt'    => $this->createdAt,
         ];
     }
 
