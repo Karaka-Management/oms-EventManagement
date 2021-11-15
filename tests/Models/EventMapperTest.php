@@ -22,7 +22,6 @@ use Modules\EventManagement\Models\ProgressType;
 use Modules\Media\Models\Media;
 use Modules\Tasks\Models\Task;
 use phpOMS\Localization\Money;
-use phpOMS\Utils\RnG\Text;
 
 /**
  * @internal
