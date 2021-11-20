@@ -46,9 +46,10 @@ final class EventMapperTest extends \PHPUnit\Framework\TestCase
         $money = new Money();
         $money->setString('1.23');
 
-        $event->costs    = $money;
-        $event->budget   = $money;
-        $event->earnings = $money;
+        $event->budgetCosts    = $money;
+        $event->budgetEarnings   = $money;
+        $event->actualCosts = $money;
+        $event->actualEarnings = $money;
 
         $task        = new Task();
         $task->title = 'EventTask 1';
@@ -84,9 +85,10 @@ final class EventMapperTest extends \PHPUnit\Framework\TestCase
         self::assertEquals($event->countTasks(), $eventR->countTasks());
         self::assertEquals($event->start->format('Y-m-d'), $eventR->start->format('Y-m-d'));
         self::assertEquals($event->end->format('Y-m-d'), $eventR->end->format('Y-m-d'));
-        self::assertEquals($event->costs->getAmount(), $eventR->costs->getAmount());
-        self::assertEquals($event->budget->getAmount(), $eventR->budget->getAmount());
-        self::assertEquals($event->earnings->getAmount(), $eventR->earnings->getAmount());
+        self::assertEquals($event->budgetCosts->getAmount(), $eventR->budgetCosts->getAmount());
+        self::assertEquals($event->budgetEarnings->getAmount(), $eventR->budgetEarnings->getAmount());
+        self::assertEquals($event->actualCosts->getAmount(), $eventR->actualCosts->getAmount());
+        self::assertEquals($event->actualEarnings->getAmount(), $eventR->actualEarnings->getAmount());
         self::assertEquals($event->progress, $eventR->progress);
         self::assertEquals($event->getProgressType(), $eventR->getProgressType());
 

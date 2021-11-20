@@ -47,9 +47,10 @@ final class EventTest extends \PHPUnit\Framework\TestCase
         self::assertInstanceOf('\Modules\Calendar\Models\Calendar', $this->event->calendar);
         self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $this->event->start->format('Y-m-d'));
         self::assertEquals((new \DateTime('now'))->modify('+1 month')->format('Y-m-d'), $this->event->end->format('Y-m-d'));
-        self::assertEquals(0, $this->event->costs->getInt());
-        self::assertEquals(0, $this->event->budget->getInt());
-        self::assertEquals(0, $this->event->earnings->getInt());
+        self::assertEquals(0, $this->event->budgetCosts->getInt());
+        self::assertEquals(0, $this->event->actualCosts->getInt());
+        self::assertEquals(0, $this->event->budgetEarnings->getInt());
+        self::assertEquals(0, $this->event->actualEarnings->getInt());
         self::assertFalse($this->event->removeTask(2));
         self::assertEmpty($this->event->getTasks());
         self::assertEmpty($this->event->getMedia());
@@ -76,45 +77,6 @@ final class EventTest extends \PHPUnit\Framework\TestCase
     {
         $this->expectException(\phpOMS\Stdlib\Base\Exception\InvalidEnumValue::class);
         $this->event->setType(999);
-    }
-
-    /**
-     * @covers Modules\EventManagement\Models\Event
-     * @group module
-     */
-    public function testCostsInputOutput() : void
-    {
-        $money = new Money();
-        $money->setString('1.23');
-
-        $this->event->costs = $money;
-        self::assertEquals($money->getAmount(), $this->event->costs->getAmount());
-    }
-
-    /**
-     * @covers Modules\EventManagement\Models\Event
-     * @group module
-     */
-    public function testBudgetInputOutput() : void
-    {
-        $money = new Money();
-        $money->setString('1.23');
-
-        $this->event->budget = $money;
-        self::assertEquals($money->getAmount(), $this->event->budget->getAmount());
-    }
-
-    /**
-     * @covers Modules\EventManagement\Models\Event
-     * @group module
-     */
-    public function testEarningsInputOutput() : void
-    {
-        $money = new Money();
-        $money->setString('1.23');
-
-        $this->event->earnings = $money;
-        self::assertEquals($money->getAmount(), $this->event->earnings->getAmount());
     }
 
     /**
@@ -192,9 +154,10 @@ final class EventTest extends \PHPUnit\Framework\TestCase
                 'end'          => $this->event->end,
                 'name'         => 'Name',
                 'description'  => 'Description',
-                'costs'        => new Money(),
-                'budget'       => new Money(),
-                'earnings'     => new Money(),
+                'budgetCosts'        => new Money(),
+                'budgetEarnings'       => new Money(),
+                'actualCosts'     => new Money(),
+                'actualEarnings'     => new Money(),
                 'tasks'        => [],
                 'media'        => [],
                 'progress'     => 10,

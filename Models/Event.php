@@ -94,15 +94,7 @@ class Event
      * @var Money
      * @since 1.0.0
      */
-    public Money $costs;
-
-    /**
-     * Budget.
-     *
-     * @var Money
-     * @since 1.0.0
-     */
-    public Money $budget;
+    public Money $budgetCosts;
 
     /**
      * Earnings.
@@ -110,7 +102,23 @@ class Event
      * @var Money
      * @since 1.0.0
      */
-    public Money $earnings;
+    public Money $budgetEarnings;
+
+    /**
+     * Costs.
+     *
+     * @var Money
+     * @since 1.0.0
+     */
+    public Money $actualCosts;
+
+    /**
+     * Earnings.
+     *
+     * @var Money
+     * @since 1.0.0
+     */
+    public Money $actualEarnings;
 
     /**
      * Tasks.
@@ -161,6 +169,22 @@ class Event
     public Account $createdBy;
 
     /**
+     * Account relations
+     *
+     * @var AccountRelation[]
+     * @since 1.0.0
+     */
+    private array $accountRelations = [];
+
+    /**
+     * Attributes.
+     *
+     * @var int[]|EventAttribute[]
+     * @since 1.0.0
+     */
+    private array $attributes = [];
+
+    /**
      * Constructor.
      *
      * @param string $name Event name/title
@@ -172,9 +196,10 @@ class Event
         $this->start     = new \DateTime('now');
         $this->end       = (new \DateTime('now'))->modify('+1 month');
         $this->calendar  = new Calendar();
-        $this->costs     = new Money();
-        $this->budget    = new Money();
-        $this->earnings  = new Money();
+        $this->budgetCosts     = new Money();
+        $this->budgetEarnings    = new Money();
+        $this->actualCosts  = new Money();
+        $this->actualEarnings  = new Money();
         $this->createdAt = new \DateTimeImmutable('now');
         $this->createdBy = new NullAccount();
 
@@ -348,6 +373,46 @@ class Event
     }
 
     /**
+     * Add account relation
+     *
+     * @param AccountRelation $accRel Account relation
+     *
+     * @return void
+     *
+     * @since 1.0.0
+     */
+    public function addAccount(AccountRelation $accRel) : void
+    {
+        $this->accountRelations[] = $accRel;
+    }
+
+     /**
+     * Add attribute to item
+     *
+     * @param EventAttribute $attribute Note
+     *
+     * @return void
+     *
+     * @since 1.0.0
+     */
+    public function addAttribute(EventAttribute $attribute) : void
+    {
+        $this->attributes[] = $attribute;
+    }
+
+    /**
+     * Get attributes
+     *
+     * @return int[]|EventAttribute[]
+     *
+     * @since 1.0.0
+     */
+    public function getAttributes() : array
+    {
+        return $this->attributes;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function toArray() : array
@@ -360,9 +425,10 @@ class Event
             'name'         => $this->name,
             'description'  => $this->description,
             'calendar'     => $this->calendar,
-            'costs'        => $this->costs,
-            'budget'       => $this->budget,
-            'earnings'     => $this->earnings,
+            'budgetCosts'        => $this->budgetCosts,
+            'budgetEarnings'        => $this->budgetEarnings,
+            'actualCosts'        => $this->actualCosts,
+            'actualEarnings'        => $this->actualEarnings,
             'tasks'        => $this->tasks,
             'media'        => $this->media,
             'progress'     => $this->progress,

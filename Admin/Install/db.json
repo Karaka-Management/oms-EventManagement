@@ -31,18 +31,23 @@
                 "foreignTable": "calendar",
                 "foreignKey": "calendar_id"
             },
-            "eventmanagement_event_costs": {
-                "name": "eventmanagement_event_costs",
+            "eventmanagement_event_budgetcosts": {
+                "name": "eventmanagement_event_budgetcosts",
                 "type": "INT",
                 "null": false
             },
-            "eventmanagement_event_budget": {
-                "name": "eventmanagement_event_budget",
+            "eventmanagement_event_budgetearnings": {
+                "name": "eventmanagement_event_budgetearnings",
                 "type": "INT",
                 "null": false
             },
-            "eventmanagement_event_earnings": {
-                "name": "eventmanagement_event_earnings",
+            "eventmanagement_event_actualcosts": {
+                "name": "eventmanagement_event_actualcosts",
+                "type": "INT",
+                "null": false
+            },
+            "eventmanagement_event_actualearnings": {
+                "name": "eventmanagement_event_actualearnings",
                 "type": "INT",
                 "null": false
             },
@@ -106,6 +111,37 @@
             }
         }
     },
+    "eventmanagement_event_accountrel": {
+        "name": "eventmanagement_event_accountrel",
+        "fields": {
+            "eventmanagement_event_accountrel_id": {
+                "name": "eventmanagement_event_accountrel_id",
+                "type": "INT",
+                "null": false,
+                "primary": true,
+                "autoincrement": true
+            },
+            "eventmanagement_event_accountrel_event": {
+                "name": "eventmanagement_event_accountrel_event",
+                "type": "INT",
+                "null": false,
+                "foreignTable": "eventmanagement_event",
+                "foreignKey": "eventmanagement_event_id"
+            },
+            "eventmanagement_event_accountrel_type": {
+                "name": "eventmanagement_event_accountrel_type",
+                "type": "INT",
+                "null": false
+            },
+            "eventmanagement_event_accountrel_account": {
+                "name": "eventmanagement_event_accountrel_account",
+                "type": "INT",
+                "null": false,
+                "foreignTable": "account",
+                "foreignKey": "account_id"
+            }
+        }
+    },
     "eventmanagement_task_relation": {
         "name": "eventmanagement_task_relation",
         "fields": {
@@ -129,6 +165,198 @@
                 "null": false,
                 "foreignTable": "eventmanagement_event",
                 "foreignKey": "eventmanagement_event_id"
+            }
+        }
+    },
+    "eventmanagement_event_attr_type": {
+        "name": "eventmanagement_event_attr_type",
+        "fields": {
+            "eventmanagement_event_attr_type_id": {
+                "name": "eventmanagement_event_attr_type_id",
+                "type": "INT",
+                "null": false,
+                "primary": true,
+                "autoincrement": true
+            },
+            "eventmanagement_event_attr_type_name": {
+                "name": "eventmanagement_event_attr_type_name",
+                "type": "VARCHAR(255)",
+                "null": false
+            },
+            "eventmanagement_event_attr_type_fields": {
+                "name": "eventmanagement_event_attr_type_fields",
+                "type": "INT(11)",
+                "null": false
+            },
+            "eventmanagement_event_attr_type_custom": {
+                "name": "eventmanagement_event_attr_type_custom",
+                "type": "TINYINT(1)",
+                "null": false
+            },
+            "eventmanagement_event_attr_type_required": {
+                "description": "Every event must have this attribute type if set to true.",
+                "name": "eventmanagement_event_attr_type_required",
+                "type": "TINYINT(1)",
+                "null": false
+            },
+            "eventmanagement_event_attr_type_pattern": {
+                "description": "This is a regex validation pattern.",
+                "name": "eventmanagement_event_attr_type_pattern",
+                "type": "VARCHAR(255)",
+                "null": false
+            }
+        }
+    },
+    "eventmanagement_event_attr_type_l11n": {
+        "name": "eventmanagement_event_attr_type_l11n",
+        "fields": {
+            "eventmanagement_event_attr_type_l11n_id": {
+                "name": "eventmanagement_event_attr_type_l11n_id",
+                "type": "INT",
+                "null": false,
+                "primary": true,
+                "autoincrement": true
+            },
+            "eventmanagement_event_attr_type_l11n_title": {
+                "name": "eventmanagement_event_attr_type_l11n_title",
+                "type": "VARCHAR(255)",
+                "null": false
+            },
+            "eventmanagement_event_attr_type_l11n_type": {
+                "name": "eventmanagement_event_attr_type_l11n_type",
+                "type": "INT(11)",
+                "null": false,
+                "foreignTable": "eventmanagement_event_attr_type",
+                "foreignKey": "eventmanagement_event_attr_type_id"
+            },
+            "eventmanagement_event_attr_type_l11n_lang": {
+                "name": "eventmanagement_event_attr_type_l11n_lang",
+                "type": "VARCHAR(2)",
+                "null": false,
+                "foreignTable": "language",
+                "foreignKey": "language_639_1"
+            }
+        }
+    },
+    "eventmanagement_event_attr_value": {
+        "name": "eventmanagement_event_attr_value",
+        "fields": {
+            "eventmanagement_event_attr_value_id": {
+                "name": "eventmanagement_event_attr_value_id",
+                "type": "INT",
+                "null": false,
+                "primary": true,
+                "autoincrement": true
+            },
+            "eventmanagement_event_attr_value_default": {
+                "name": "eventmanagement_event_attr_value_default",
+                "type": "TINYINT(1)",
+                "null": false
+            },
+            "eventmanagement_event_attr_value_type": {
+                "name": "eventmanagement_event_attr_value_type",
+                "type": "INT(11)",
+                "null": false
+            },
+            "eventmanagement_event_attr_value_valueStr": {
+                "name": "eventmanagement_event_attr_value_valueStr",
+                "type": "VARCHAR(255)",
+                "null": true,
+                "default": null
+            },
+            "eventmanagement_event_attr_value_valueInt": {
+                "name": "eventmanagement_event_attr_value_valueInt",
+                "type": "INT(11)",
+                "null": true,
+                "default": null
+            },
+            "eventmanagement_event_attr_value_valueDec": {
+                "name": "eventmanagement_event_attr_value_valueDec",
+                "type": "DECIMAL(19,5)",
+                "null": true,
+                "default": null
+            },
+            "eventmanagement_event_attr_value_valueDat": {
+                "name": "eventmanagement_event_attr_value_valueDat",
+                "type": "DATETIME",
+                "null": true,
+                "default": null
+            },
+            "eventmanagement_event_attr_value_lang": {
+                "name": "eventmanagement_event_attr_value_lang",
+                "type": "VARCHAR(2)",
+                "null": true,
+                "default": null,
+                "foreignTable": "language",
+                "foreignKey": "language_639_1"
+            },
+            "eventmanagement_event_attr_value_country": {
+                "name": "eventmanagement_event_attr_value_country",
+                "type": "VARCHAR(2)",
+                "null": true,
+                "default": null,
+                "foreignTable": "country",
+                "foreignKey": "country_code2"
+            }
+        }
+    },
+    "eventmanagement_event_attr_default": {
+        "name": "eventmanagement_event_attr_default",
+        "fields": {
+            "eventmanagement_event_attr_default_id": {
+                "name": "eventmanagement_event_attr_default_id",
+                "type": "INT",
+                "null": false,
+                "primary": true,
+                "autoincrement": true
+            },
+            "eventmanagement_event_attr_default_type": {
+                "name": "eventmanagement_event_attr_default_type",
+                "type": "INT(11)",
+                "null": false,
+                "foreignTable": "eventmanagement_event_attr_type",
+                "foreignKey": "eventmanagement_event_attr_type_id"
+            },
+            "eventmanagement_event_attr_default_value": {
+                "name": "eventmanagement_event_attr_default_value",
+                "type": "INT(11)",
+                "null": false,
+                "foreignTable": "eventmanagement_event_attr_value",
+                "foreignKey": "eventmanagement_event_attr_value_id"
+            }
+        }
+    },
+    "eventmanagement_event_attr": {
+        "name": "eventmanagement_event_attr",
+        "fields": {
+            "eventmanagement_event_attr_id": {
+                "name": "eventmanagement_event_attr_id",
+                "type": "INT",
+                "null": false,
+                "primary": true,
+                "autoincrement": true
+            },
+            "eventmanagement_event_attr_event": {
+                "name": "eventmanagement_event_attr_event",
+                "type": "INT(11)",
+                "null": false,
+                "foreignTable": "eventmanagement_event",
+                "foreignKey": "eventmanagement_event_id"
+            },
+            "eventmanagement_event_attr_type": {
+                "name": "eventmanagement_event_attr_type",
+                "type": "INT(11)",
+                "null": false,
+                "foreignTable": "eventmanagement_event_attr_type",
+                "foreignKey": "eventmanagement_event_attr_type_id"
+            },
+            "eventmanagement_event_attr_value": {
+                "name": "eventmanagement_event_attr_value",
+                "type": "INT(11)",
+                "null": true,
+                "default": null,
+                "foreignTable": "eventmanagement_event_attr_value",
+                "foreignKey": "eventmanagement_event_attr_value_id"
             }
         }
     }

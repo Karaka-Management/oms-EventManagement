@@ -1,0 +1,74 @@
+<?php
+/**
+ * Orange Management
+ *
+ * PHP Version 8.0
+ *
+ * @package   Modules\EventManagement\Models
+ * @copyright Dennis Eichhorn
+ * @license   OMS License 1.0
+ * @version   1.0.0
+ * @link      https://orange-management.org
+ */
+declare(strict_types=1);
+
+namespace Modules\EventManagement\Models;
+
+use phpOMS\DataStorage\Database\DataMapperAbstract;
+
+/**
+ * Event mapper class.
+ *
+ * @package Modules\EventManagement\Models
+ * @license OMS License 1.0
+ * @link    https://orange-management.org
+ * @since   1.0.0
+ */
+final class EventAttributeMapper extends DataMapperAbstract
+{
+    /**
+     * Columns.
+     *
+     * @var array<string, array{name:string, type:string, internal:string, autocomplete?:bool, readonly?:bool, writeonly?:bool, annotations?:array}>
+     * @since 1.0.0
+     */
+    protected static array $columns = [
+        'eventmanagement_event_attr_id'    => ['name' => 'eventmanagement_event_attr_id',    'type' => 'int', 'internal' => 'id'],
+        'eventmanagement_event_attr_event'  => ['name' => 'eventmanagement_event_attr_event',  'type' => 'int', 'internal' => 'event'],
+        'eventmanagement_event_attr_type'  => ['name' => 'eventmanagement_event_attr_type',  'type' => 'int', 'internal' => 'type'],
+        'eventmanagement_event_attr_value' => ['name' => 'eventmanagement_event_attr_value', 'type' => 'int', 'internal' => 'value'],
+    ];
+
+    /**
+     * Has one relation.
+     *
+     * @var array<string, array{mapper:string, external:string, by?:string, column?:string, conditional?:bool}>
+     * @since 1.0.0
+     */
+    protected static array $ownsOne = [
+        'type' => [
+            'mapper'            => EventAttributeTypeMapper::class,
+            'external'          => 'eventmanagement_event_attr_type',
+        ],
+        'value' => [
+            'mapper'            => EventAttributeValueMapper::class,
+            'external'          => 'eventmanagement_event_attr_value',
+        ],
+    ];
+
+    /**
+     * Primary table.
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    protected static string $table = 'eventmanagement_event_attr';
+
+    /**
+     * Primary field name.
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    protected static string $primaryField = 'eventmanagement_event_attr_id';
+}

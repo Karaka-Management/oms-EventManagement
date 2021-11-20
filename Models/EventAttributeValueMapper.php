@@ -1,0 +1,62 @@
+<?php
+/**
+ * Orange Management
+ *
+ * PHP Version 8.0
+ *
+ * @package   Modules\EventManagement\Models
+ * @copyright Dennis Eichhorn
+ * @license   OMS License 1.0
+ * @version   1.0.0
+ * @link      https:   //orange-management.org
+ */
+declare(strict_types=1);
+
+namespace Modules\EventManagement\Models;
+
+use phpOMS\DataStorage\Database\DataMapperAbstract;
+
+/**
+ * Event mapper class.
+ *
+ * @package Modules\EventManagement\Models
+ * @license OMS License 1.0
+ * @link    https:   //orange-management.org
+ * @since   1.0.0
+ */
+final class EventAttributeValueMapper extends DataMapperAbstract
+{
+    /**
+     * Columns.
+     *
+     * @var array<string, array{name:string, type:string, internal:string, autocomplete?:bool, readonly?:bool, writeonly?:bool, annotations?:array}>
+     * @since 1.0.0
+     */
+    protected static array $columns = [
+        'eventmanagement_event_attr_value_id'       => ['name' => 'eventmanagement_event_attr_value_id',       'type' => 'int',    'internal' => 'id'],
+        'eventmanagement_event_attr_value_default'  => ['name' => 'eventmanagement_event_attr_value_default',  'type' => 'bool', 'internal' => 'isDefault'],
+        'eventmanagement_event_attr_value_type'     => ['name' => 'eventmanagement_event_attr_value_type',     'type' => 'int',    'internal' => 'type'],
+        'eventmanagement_event_attr_value_valueStr' => ['name' => 'eventmanagement_event_attr_value_valueStr', 'type' => 'string', 'internal' => 'valueStr'],
+        'eventmanagement_event_attr_value_valueInt' => ['name' => 'eventmanagement_event_attr_value_valueInt', 'type' => 'int', 'internal' => 'valueInt'],
+        'eventmanagement_event_attr_value_valueDec' => ['name' => 'eventmanagement_event_attr_value_valueDec', 'type' => 'float', 'internal' => 'valueDec'],
+        'eventmanagement_event_attr_value_valueDat' => ['name' => 'eventmanagement_event_attr_value_valueDat', 'type' => 'DateTime', 'internal' => 'valueDat'],
+        'eventmanagement_event_attr_value_lang'     => ['name' => 'eventmanagement_event_attr_value_lang',     'type' => 'string', 'internal' => 'language'],
+        'eventmanagement_event_attr_value_country'  => ['name' => 'eventmanagement_event_attr_value_country',  'type' => 'string', 'internal' => 'country'],
+    ];
+
+    /**
+     * Primary table.
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    protected static string $table = 'eventmanagement_event_attr_value';
+
+    /**
+     * Primary field name.
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    protected static string $primaryField = 'eventmanagement_event_attr_value_id';
+}
