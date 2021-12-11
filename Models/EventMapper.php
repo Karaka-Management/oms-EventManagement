@@ -17,7 +17,7 @@ namespace Modules\EventManagement\Models;
 use Modules\Admin\Models\AccountMapper;
 use Modules\Media\Models\MediaMapper;
 use Modules\Tasks\Models\TaskMapper;
-use phpOMS\DataStorage\Database\DataMapperAbstract;
+use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
 
 /**
  * Mapper class.
@@ -27,7 +27,7 @@ use phpOMS\DataStorage\Database\DataMapperAbstract;
  * @link    https://orange-management.org
  * @since   1.0.0
  */
-final class EventMapper extends DataMapperAbstract
+final class EventMapper extends DataMapperFactory
 {
     /**
      * Columns.
@@ -35,7 +35,7 @@ final class EventMapper extends DataMapperAbstract
      * @var array<string, array{name:string, type:string, internal:string, autocomplete?:bool, readonly?:bool, writeonly?:bool, annotations?:array}>
      * @since 1.0.0
      */
-    protected static array $columns = [
+    public const COLUMNS = [
         'eventmanagement_event_id'            => ['name' => 'eventmanagement_event_id',            'type' => 'int',          'internal' => 'id'],
         'eventmanagement_event_name'          => ['name' => 'eventmanagement_event_name',          'type' => 'string',       'internal' => 'name'],
         'eventmanagement_event_description'   => ['name' => 'eventmanagement_event_description',   'type' => 'string',       'internal' => 'description'],
@@ -59,7 +59,7 @@ final class EventMapper extends DataMapperAbstract
      * @var array<string, array{mapper:string, table:string, self?:?string, external?:?string, column?:string}>
      * @since 1.0.0
      */
-    protected static array $hasMany = [
+    public const HAS_MANY = [
         'tasks' => [
             'mapper'   => TaskMapper::class,
             'table'    => 'eventmanagement_task_relation',
@@ -87,7 +87,7 @@ final class EventMapper extends DataMapperAbstract
      * @var array<string, array{mapper:string, external:string, by?:string, column?:string, conditional?:bool}>
      * @since 1.0.0
      */
-    protected static array $ownsOne = [
+    public const OWNS_ONE = [
         'calendar' => [
             'mapper'     => \Modules\Calendar\Models\CalendarMapper::class,
             'external'   => 'eventmanagement_event_calendar',
@@ -100,7 +100,7 @@ final class EventMapper extends DataMapperAbstract
      * @var array<string, array{mapper:string, external:string}>
      * @since 1.0.0
      */
-    protected static array $belongsTo = [
+    public const BELONGS_TO = [
         'createdBy' => [
             'mapper'     => AccountMapper::class,
             'external'   => 'eventmanagement_event_created_by',
@@ -113,7 +113,7 @@ final class EventMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $table = 'eventmanagement_event';
+    public const TABLE = 'eventmanagement_event';
 
     /**
      * Created at.
@@ -121,7 +121,7 @@ final class EventMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $createdAt = 'eventmanagement_event_created_at';
+    public const CREATED_AT = 'eventmanagement_event_created_at';
 
     /**
      * Primary field name.
@@ -129,5 +129,5 @@ final class EventMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $primaryField = 'eventmanagement_event_id';
+    public const PRIMARYFIELD ='eventmanagement_event_id';
 }

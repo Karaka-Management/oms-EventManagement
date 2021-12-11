@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace Modules\EventManagement\Models;
 
-use phpOMS\DataStorage\Database\DataMapperAbstract;
+use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
 
 /**
  * Event mapper class.
@@ -24,7 +24,7 @@ use phpOMS\DataStorage\Database\DataMapperAbstract;
  * @link    https://orange-management.org
  * @since   1.0.0
  */
-final class EventAttributeMapper extends DataMapperAbstract
+final class EventAttributeMapper extends DataMapperFactory
 {
     /**
      * Columns.
@@ -32,7 +32,7 @@ final class EventAttributeMapper extends DataMapperAbstract
      * @var array<string, array{name:string, type:string, internal:string, autocomplete?:bool, readonly?:bool, writeonly?:bool, annotations?:array}>
      * @since 1.0.0
      */
-    protected static array $columns = [
+    public const COLUMNS = [
         'eventmanagement_event_attr_id'    => ['name' => 'eventmanagement_event_attr_id',    'type' => 'int', 'internal' => 'id'],
         'eventmanagement_event_attr_event'  => ['name' => 'eventmanagement_event_attr_event',  'type' => 'int', 'internal' => 'event'],
         'eventmanagement_event_attr_type'  => ['name' => 'eventmanagement_event_attr_type',  'type' => 'int', 'internal' => 'type'],
@@ -45,7 +45,7 @@ final class EventAttributeMapper extends DataMapperAbstract
      * @var array<string, array{mapper:string, external:string, by?:string, column?:string, conditional?:bool}>
      * @since 1.0.0
      */
-    protected static array $ownsOne = [
+    public const OWNS_ONE = [
         'type' => [
             'mapper'            => EventAttributeTypeMapper::class,
             'external'          => 'eventmanagement_event_attr_type',
@@ -62,7 +62,7 @@ final class EventAttributeMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $table = 'eventmanagement_event_attr';
+    public const TABLE = 'eventmanagement_event_attr';
 
     /**
      * Primary field name.
@@ -70,5 +70,5 @@ final class EventAttributeMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $primaryField = 'eventmanagement_event_attr_id';
+    public const PRIMARYFIELD ='eventmanagement_event_attr_id';
 }

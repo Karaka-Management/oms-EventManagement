@@ -21,6 +21,7 @@ use Modules\EventManagement\Models\EventType;
 use Modules\EventManagement\Models\ProgressType;
 use Modules\Media\Models\Media;
 use Modules\Tasks\Models\Task;
+use phpOMS\DataStorage\Database\Query\OrderType;
 use phpOMS\Localization\Money;
 
 /**
@@ -74,11 +75,11 @@ final class EventMapperTest extends \PHPUnit\Framework\TestCase
         $media->name      = 'Event Media';
         $event->addMedia($media);
 
-        $id = EventMapper::create($event);
+        $id = EventMapper::create()->execute($event);
         self::assertGreaterThan(0, $event->getId());
         self::assertEquals($id, $event->getId());
 
-        $eventR = EventMapper::get($event->getId());
+        $eventR = EventMapper::get()->with('tasks')->with('media')->where('id', $event->getId())->execute();
 
         self::assertEquals($event->name, $eventR->name);
         self::assertEquals($event->description, $eventR->description);
@@ -104,7 +105,7 @@ final class EventMapperTest extends \PHPUnit\Framework\TestCase
      */
     public function testNewest() : void
     {
-        $newest = EventMapper::getNewest(1);
+        $newest = EventMapper::getAll()->sort('id', OrderType::DESC)->limit(1)->execute();
 
         self::assertCount(1, $newest);
     }

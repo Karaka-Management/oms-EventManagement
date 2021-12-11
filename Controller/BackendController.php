@@ -17,6 +17,7 @@ namespace Modules\EventManagement\Controller;
 use Modules\EventManagement\Models\EventMapper;
 use phpOMS\Asset\AssetType;
 use phpOMS\Contract\RenderableInterface;
+use phpOMS\DataStorage\Database\Query\OrderType;
 use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
 use phpOMS\Views\View;
@@ -51,7 +52,7 @@ final class BackendController extends Controller
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1004201001, $request, $response));
 
         /** @var \Modules\EventManagement\Models\Event[] $events */
-        $events = EventMapper::getNewest(25);
+        $events = EventMapper::getAll()->sort('id', OrderType::DESC)->limit(25);
         $view->addData('events', $events);
 
         return $view;
@@ -113,7 +114,7 @@ final class BackendController extends Controller
         $view->addData('medialist', $mediaListView);
 
         /** @var \Modules\EventManagement\Models\Event $event */
-        $event = EventMapper::get((int) $request->getData('id'));
+        $event = EventMapper::get()->where('id', (int) $request->getData('id'))->execute();
         $view->addData('event', $event);
 
         return $view;

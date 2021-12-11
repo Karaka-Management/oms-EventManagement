@@ -15,7 +15,7 @@ declare(strict_types=1);
 namespace Modules\EventManagement\Models;
 
 use Modules\Admin\Models\AccountMapper;
-use phpOMS\DataStorage\Database\DataMapperAbstract;
+use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
 
 /**
  * Mapper class.
@@ -25,7 +25,7 @@ use phpOMS\DataStorage\Database\DataMapperAbstract;
  * @link    https://orange-management.org
  * @since   1.0.0
  */
-final class AccountRelationMapper extends DataMapperAbstract
+final class AccountRelationMapper extends DataMapperFactory
 {
     /**
      * Columns.
@@ -33,10 +33,10 @@ final class AccountRelationMapper extends DataMapperAbstract
      * @var array<string, array{name:string, type:string, internal:string, autocomplete?:bool, readonly?:bool, writeonly?:bool, annotations?:array}>
      * @since 1.0.0
      */
-    protected static array $columns = [
-        'marketing_event_accountrel_id'           => ['name' => 'marketing_event_accountrel_id',           'type' => 'int', 'internal' => 'id'],
-        'marketing_event_accountrel_event'         => ['name' => 'marketing_event_accountrel_event',         'type' => 'int', 'internal' => 'event'],
-        'marketing_event_accountrel_type'        => ['name' => 'marketing_event_accountrel_type',        'type' => 'int', 'internal' => 'type'],
+    public const COLUMNS = [
+        'eventmanagement_event_accountrel_id'           => ['name' => 'eventmanagement_event_accountrel_id',           'type' => 'int', 'internal' => 'id'],
+        'eventmanagement_event_accountrel_event'         => ['name' => 'eventmanagement_event_accountrel_event',         'type' => 'int', 'internal' => 'event'],
+        'eventmanagement_event_accountrel_type'        => ['name' => 'eventmanagement_event_accountrel_type',        'type' => 'int', 'internal' => 'type'],
     ];
 
     /**
@@ -45,10 +45,10 @@ final class AccountRelationMapper extends DataMapperAbstract
      * @var array<string, array{mapper:string, external:string, by?:string, column?:string, conditional?:bool}>
      * @since 1.0.0
      */
-    protected static array $ownsOne = [
+    public const OWNS_ONE = [
         'account' => [
             'mapper'     => AccountMapper::class,
-            'external'   => 'marketing_event_accountrel_account',
+            'external'   => 'eventmanagement_event_accountrel_account',
         ],
     ];
 
@@ -58,7 +58,7 @@ final class AccountRelationMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $table = 'marketing_event_accountrel';
+    public const TABLE = 'eventmanagement_event_accountrel';
 
     /**
      * Primary field name.
@@ -66,5 +66,5 @@ final class AccountRelationMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $primaryField = 'marketing_event_accountrel_id';
+    public const PRIMARYFIELD ='eventmanagement_event_accountrel_id';
 }
