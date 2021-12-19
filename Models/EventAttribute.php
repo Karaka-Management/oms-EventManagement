@@ -88,7 +88,7 @@ class EventAttribute implements \JsonSerializable, ArrayableInterface
     {
         return [
             'id'    => $this->id,
-            'item'  => $this->item,
+            'event' => $this->event,
             'type'  => $this->type,
             'value' => $this->value,
         ];

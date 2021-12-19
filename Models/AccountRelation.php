@@ -62,8 +62,6 @@ class AccountRelation
     /**
      * Constructor.
      *
-     * @param string $name Event name/title
-     *
      * @since 1.0.0
      */
     public function __construct()

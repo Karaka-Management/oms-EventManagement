@@ -63,8 +63,8 @@ class EventAttributeTypeL11n implements \JsonSerializable, ArrayableInterface
      * Constructor.
      *
      * @param int|EventAttributeType $type     Attribute type
-     * @param string                $title    Localized title
-     * @param string                $language Language
+     * @param string                 $title    Localized title
+     * @param string                 $language Language
      *
      * @since 1.0.0
      */
