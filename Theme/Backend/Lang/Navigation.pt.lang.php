@@ -13,5 +13,5 @@
 declare(strict_types=1);
 
 return ['Navigation' => [
-    'EventManagement' => 'Event Management',
+    'EventManagement' => 'Gestão de eventos',
 ]];
