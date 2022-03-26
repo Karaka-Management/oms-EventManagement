@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace Modules\EventManagement\Models;
 
-use phpOMS\Contract\ArrayableInterface;
 
 /**
  * Event class.
@@ -24,7 +23,7 @@ use phpOMS\Contract\ArrayableInterface;
  * @link    https://karaka.app
  * @since   1.0.0
  */
-class EventAttribute implements \JsonSerializable, ArrayableInterface
+class EventAttribute implements \JsonSerializable
 {
     /**
      * Id.
