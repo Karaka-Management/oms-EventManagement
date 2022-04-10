@@ -59,7 +59,7 @@ final class EventAttributeTypeMapper extends DataMapperFactory
             'mapper'            => EventAttributeValueMapper::class,
             'table'             => 'eventmanagement_event_attr_default',
             'self'              => 'eventmanagement_event_attr_default_type',
-            'external'          => 'eventmanagement_event_attr_default_value'
+            'external'          => 'eventmanagement_event_attr_default_value',
         ],
     ];
 

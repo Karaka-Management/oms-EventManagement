@@ -47,10 +47,10 @@ final class EventMapperTest extends \PHPUnit\Framework\TestCase
         $money = new Money();
         $money->setString('1.23');
 
-        $event->budgetCosts    = $money;
+        $event->budgetCosts      = $money;
         $event->budgetEarnings   = $money;
-        $event->actualCosts = $money;
-        $event->actualEarnings = $money;
+        $event->actualCosts      = $money;
+        $event->actualEarnings   = $money;
 
         $task        = new Task();
         $task->title = 'EventTask 1';

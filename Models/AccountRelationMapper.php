@@ -34,9 +34,9 @@ final class AccountRelationMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const COLUMNS = [
-        'eventmanagement_event_accountrel_id'           => ['name' => 'eventmanagement_event_accountrel_id',           'type' => 'int', 'internal' => 'id'],
+        'eventmanagement_event_accountrel_id'            => ['name' => 'eventmanagement_event_accountrel_id',           'type' => 'int', 'internal' => 'id'],
         'eventmanagement_event_accountrel_event'         => ['name' => 'eventmanagement_event_accountrel_event',         'type' => 'int', 'internal' => 'event'],
-        'eventmanagement_event_accountrel_type'        => ['name' => 'eventmanagement_event_accountrel_type',        'type' => 'int', 'internal' => 'type'],
+        'eventmanagement_event_accountrel_type'          => ['name' => 'eventmanagement_event_accountrel_type',        'type' => 'int', 'internal' => 'type'],
     ];
 
     /**

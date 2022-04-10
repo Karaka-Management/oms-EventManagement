@@ -148,20 +148,20 @@ final class EventTest extends \PHPUnit\Framework\TestCase
 
         self::assertEquals(
             [
-                'id'           => 0,
-                'type'         => EventType::SEMINAR,
-                'start'        => $this->event->start,
-                'end'          => $this->event->end,
-                'name'         => 'Name',
-                'description'  => 'Description',
-                'budgetCosts'        => new Money(),
+                'id'                   => 0,
+                'type'                 => EventType::SEMINAR,
+                'start'                => $this->event->start,
+                'end'                  => $this->event->end,
+                'name'                 => 'Name',
+                'description'          => 'Description',
+                'budgetCosts'          => new Money(),
                 'budgetEarnings'       => new Money(),
-                'actualCosts'     => new Money(),
-                'actualEarnings'     => new Money(),
-                'tasks'        => [],
-                'media'        => [],
-                'progress'     => 10,
-                'progressType' => ProgressType::TASKS,
+                'actualCosts'          => new Money(),
+                'actualEarnings'       => new Money(),
+                'tasks'                => [],
+                'media'                => [],
+                'progress'             => 10,
+                'progressType'         => ProgressType::TASKS,
             ],
             $serialized
         );
