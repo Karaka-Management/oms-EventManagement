@@ -35,4 +35,12 @@ final class NullEventAttributeTypeL11n extends EventAttributeTypeL11n
     {
         $this->id = $id;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize() : mixed
+    {
+        return ['id' => $this->id];
+    }
 }
