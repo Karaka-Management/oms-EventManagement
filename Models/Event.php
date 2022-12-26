@@ -19,6 +19,7 @@ use Modules\Admin\Models\NullAccount;
 use Modules\Calendar\Models\Calendar;
 use Modules\Tasks\Models\NullTask;
 use Modules\Tasks\Models\Task;
+use Modules\Media\Models\Media;
 use phpOMS\Localization\Money;
 use phpOMS\Stdlib\Base\Exception\InvalidEnumValue;
 
@@ -233,13 +234,13 @@ class Event
     /**
      * Add media file.
      *
-     * @param mixed $media Media
+     * @param Media $media Media
      *
      * @return void
      *
      * @since 1.0.0
      */
-    public function addMedia($media) : void
+    public function addMedia(Media $media) : void
     {
         $this->media[] = $media;
     }
