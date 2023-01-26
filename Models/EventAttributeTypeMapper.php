@@ -52,7 +52,7 @@ final class EventAttributeTypeMapper extends DataMapperFactory
             'mapper'            => EventAttributeTypeL11nMapper::class,
             'table'             => 'eventmanagement_event_attr_type_l11n',
             'self'              => 'eventmanagement_event_attr_type_l11n_type',
-            'column'            => 'title',
+            'column'            => 'content',
             'external'          => null,
         ],
         'defaults' => [

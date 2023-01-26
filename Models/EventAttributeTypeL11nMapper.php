@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Modules\EventManagement\Models;
 
 use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
+use phpOMS\Localization\BaseStringL11n;
 
 /**
  * Event mapper class.
@@ -34,8 +35,8 @@ final class EventAttributeTypeL11nMapper extends DataMapperFactory
      */
     public const COLUMNS = [
         'eventmanagement_event_attr_type_l11n_id'        => ['name' => 'eventmanagement_event_attr_type_l11n_id',       'type' => 'int',    'internal' => 'id'],
-        'eventmanagement_event_attr_type_l11n_title'     => ['name' => 'eventmanagement_event_attr_type_l11n_title',    'type' => 'string', 'internal' => 'title', 'autocomplete' => true],
-        'eventmanagement_event_attr_type_l11n_type'      => ['name' => 'eventmanagement_event_attr_type_l11n_type',      'type' => 'int',    'internal' => 'type'],
+        'eventmanagement_event_attr_type_l11n_title'     => ['name' => 'eventmanagement_event_attr_type_l11n_title',    'type' => 'string', 'internal' => 'content', 'autocomplete' => true],
+        'eventmanagement_event_attr_type_l11n_type'      => ['name' => 'eventmanagement_event_attr_type_l11n_type',      'type' => 'int',    'internal' => 'ref'],
         'eventmanagement_event_attr_type_l11n_lang'      => ['name' => 'eventmanagement_event_attr_type_l11n_lang', 'type' => 'string', 'internal' => 'language'],
     ];
 
@@ -54,4 +55,12 @@ final class EventAttributeTypeL11nMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const PRIMARYFIELD ='eventmanagement_event_attr_type_l11n_id';
+
+    /**
+     * Model to use by the mapper.
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    public const MODEL = BaseStringL11n::class;
 }
