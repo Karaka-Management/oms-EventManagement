@@ -253,11 +253,6 @@
                 "type": "TINYINT(1)",
                 "null": false
             },
-            "eventmanagement_event_attr_value_type": {
-                "name": "eventmanagement_event_attr_value_type",
-                "type": "INT(11)",
-                "null": false
-            },
             "eventmanagement_event_attr_value_valueStr": {
                 "name": "eventmanagement_event_attr_value_valueStr",
                 "type": "VARCHAR(255)",
