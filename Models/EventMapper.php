@@ -129,5 +129,5 @@ final class EventMapper extends DataMapperFactory
      * @var string
      * @since 1.0.0
      */
-    public const PRIMARYFIELD ='eventmanagement_event_id';
+    public const PRIMARYFIELD = 'eventmanagement_event_id';
 }
