@@ -19,7 +19,7 @@ use Modules\EventManagement\Models\EventType;
 use Modules\EventManagement\Models\ProgressType;
 use Modules\Media\Models\Media;
 use Modules\Tasks\Models\Task;
-use phpOMS\Localization\Money;
+use phpOMS\Stdlib\Base\FloatInt;
 
 /**
  * @internal
@@ -42,7 +42,7 @@ final class EventTest extends \PHPUnit\Framework\TestCase
      */
     public function testDefault() : void
     {
-        self::assertEquals(0, $this->event->getId());
+        self::assertEquals(0, $this->event->id);
         self::assertEquals(EventType::DEFAULT, $this->event->getType());
         self::assertInstanceOf('\Modules\Calendar\Models\Calendar', $this->event->calendar);
         self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $this->event->start->format('Y-m-d'));
@@ -154,10 +154,10 @@ final class EventTest extends \PHPUnit\Framework\TestCase
                 'end'                  => $this->event->end,
                 'name'                 => 'Name',
                 'description'          => 'Description',
-                'budgetCosts'          => new Money(),
-                'budgetEarnings'       => new Money(),
-                'actualCosts'          => new Money(),
-                'actualEarnings'       => new Money(),
+                'budgetCosts'          => new FloatInt(),
+                'budgetEarnings'       => new FloatInt(),
+                'actualCosts'          => new FloatInt(),
+                'actualEarnings'       => new FloatInt(),
                 'tasks'                => [],
                 'media'                => [],
                 'progress'             => 10,

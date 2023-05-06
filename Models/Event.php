@@ -20,8 +20,8 @@ use Modules\Calendar\Models\Calendar;
 use Modules\Media\Models\Media;
 use Modules\Tasks\Models\NullTask;
 use Modules\Tasks\Models\Task;
-use phpOMS\Localization\Money;
 use phpOMS\Stdlib\Base\Exception\InvalidEnumValue;
+use phpOMS\Stdlib\Base\FloatInt;
 
 /**
  * Event class.
@@ -39,7 +39,7 @@ class Event
      * @var int
      * @since 1.0.0
      */
-    protected int $id = 0;
+    public int $id = 0;
 
     /**
      * Type.
@@ -47,7 +47,7 @@ class Event
      * @var int
      * @since 1.0.0
      */
-    private int $type = EventType::DEFAULT;
+    public int $type = EventType::DEFAULT;
 
     /**
      * Event start.
@@ -92,34 +92,34 @@ class Event
     /**
      * Costs.
      *
-     * @var Money
+     * @var FloatInt
      * @since 1.0.0
      */
-    public Money $budgetCosts;
+    public FloatInt $budgetCosts;
 
     /**
      * Earnings.
      *
-     * @var Money
+     * @var FloatInt
      * @since 1.0.0
      */
-    public Money $budgetEarnings;
+    public FloatInt $budgetEarnings;
 
     /**
      * Costs.
      *
-     * @var Money
+     * @var FloatInt
      * @since 1.0.0
      */
-    public Money $actualCosts;
+    public FloatInt $actualCosts;
 
     /**
      * Earnings.
      *
-     * @var Money
+     * @var FloatInt
      * @since 1.0.0
      */
-    public Money $actualEarnings;
+    public FloatInt $actualEarnings;
 
     /**
      * Tasks.
@@ -197,10 +197,10 @@ class Event
         $this->start          = new \DateTime('now');
         $this->end            = (new \DateTime('now'))->modify('+1 month');
         $this->calendar       = new Calendar();
-        $this->budgetCosts    = new Money();
-        $this->budgetEarnings = new Money();
-        $this->actualCosts    = new Money();
-        $this->actualEarnings = new Money();
+        $this->budgetCosts    = new FloatInt();
+        $this->budgetEarnings = new FloatInt();
+        $this->actualCosts    = new FloatInt();
+        $this->actualEarnings = new FloatInt();
         $this->createdAt      = new \DateTimeImmutable('now');
         $this->createdBy      = new NullAccount();
 

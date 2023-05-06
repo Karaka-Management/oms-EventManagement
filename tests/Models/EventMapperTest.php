@@ -76,10 +76,10 @@ final class EventMapperTest extends \PHPUnit\Framework\TestCase
         $event->addMedia($media);
 
         $id = EventMapper::create()->execute($event);
-        self::assertGreaterThan(0, $event->getId());
-        self::assertEquals($id, $event->getId());
+        self::assertGreaterThan(0, $event->id);
+        self::assertEquals($id, $event->id);
 
-        $eventR = EventMapper::get()->with('tasks')->with('media')->where('id', $event->getId())->execute();
+        $eventR = EventMapper::get()->with('tasks')->with('media')->where('id', $event->id)->execute();
 
         self::assertEquals($event->name, $eventR->name);
         self::assertEquals($event->description, $eventR->description);
