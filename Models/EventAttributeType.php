@@ -97,7 +97,7 @@ class EventAttributeType implements \JsonSerializable
      *
      * @since 1.0.0
      */
-    public function getId(): int
+    public function getId() : int
     {
         return $this->id;
     }
@@ -106,13 +106,13 @@ class EventAttributeType implements \JsonSerializable
      * Set l11n
      *
      * @param string|BaseStringL11n $l11n Tag article l11n
-     * @param string                        $lang Language
+     * @param string                $lang Language
      *
      * @return void
      *
      * @since 1.0.0
      */
-    public function setL11n(string | BaseStringL11n $l11n, string $lang = ISO639x1Enum::_EN): void
+    public function setL11n(string | BaseStringL11n $l11n, string $lang = ISO639x1Enum::_EN) : void
     {
         if ($l11n instanceof BaseStringL11n) {
             $this->l11n = $l11n;
@@ -131,7 +131,7 @@ class EventAttributeType implements \JsonSerializable
      *
      * @since 1.0.0
      */
-    public function getL11n(): string
+    public function getL11n() : string
     {
         return $this->l11n instanceof BaseStringL11n ? $this->l11n->content : $this->l11n;
     }
@@ -145,7 +145,7 @@ class EventAttributeType implements \JsonSerializable
      *
      * @since 1.0.0
      */
-    public function setFields(int $fields): void
+    public function setFields(int $fields) : void
     {
         $this->fields = $fields;
     }
@@ -157,7 +157,7 @@ class EventAttributeType implements \JsonSerializable
      *
      * @sicne 1.0.0
      */
-    public function getDefaults(): array
+    public function getDefaults() : array
     {
         return $this->defaults;
     }
@@ -165,7 +165,7 @@ class EventAttributeType implements \JsonSerializable
     /**
      * {@inheritdoc}
      */
-    public function toArray(): array
+    public function toArray() : array
     {
         return [
             'id'                => $this->id,
@@ -179,7 +179,7 @@ class EventAttributeType implements \JsonSerializable
     /**
      * {@inheritdoc}
      */
-    public function jsonSerialize(): mixed
+    public function jsonSerialize() : mixed
     {
         return $this->toArray();
     }
