@@ -108,7 +108,6 @@ class EventAttributeValue implements \JsonSerializable
      */
     private ?BaseStringL11n $l11n = null;
 
-
     /**
      * Set value
      *

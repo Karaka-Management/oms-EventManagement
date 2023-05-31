@@ -52,7 +52,7 @@ final class BackendController extends Controller
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1004201001, $request, $response);
 
         /** @var \Modules\EventManagement\Models\Event[] $events */
-        $events = EventMapper::getAll()->sort('id', OrderType::DESC)->limit(25);
+        $events               = EventMapper::getAll()->sort('id', OrderType::DESC)->limit(25);
         $view->data['events'] = $events;
 
         return $view;
@@ -114,7 +114,7 @@ final class BackendController extends Controller
         $view->data['medialist'] = $mediaListView;
 
         /** @var \Modules\EventManagement\Models\Event $event */
-        $event = EventMapper::get()->where('id', (int) $request->getData('id'))->execute();
+        $event               = EventMapper::get()->where('id', (int) $request->getData('id'))->execute();
         $view->data['event'] = $event;
 
         return $view;
