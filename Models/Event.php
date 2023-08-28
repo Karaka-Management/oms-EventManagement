@@ -350,6 +350,8 @@ class Event
      *
      * @return void
      *
+     * @throws InvalidEnumValue
+     *
      * @since 1.0.0
      */
     public function setType(int $type) : void
