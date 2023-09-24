@@ -151,7 +151,7 @@ class Event
      * @var int
      * @since 1.0.0
      */
-    private int $progressType = ProgressType::MANUAL;
+    public int $progressType = ProgressType::MANUAL;
 
     /**
      * Created.
