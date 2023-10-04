@@ -127,7 +127,7 @@ class Event
      * @var Task[]
      * @since 1.0.0
      */
-    private array $tasks = [];
+    public array $tasks = [];
 
     /**
      * Media.
@@ -135,7 +135,7 @@ class Event
      * @var \Modules\Media\Models\Media[]
      * @since 1.0.0
      */
-    private array $media = [];
+    public array $media = [];
 
     /**
      * Progress (0-100).
@@ -175,7 +175,7 @@ class Event
      * @var AccountRelation[]
      * @since 1.0.0
      */
-    private array $accountRelations = [];
+    public array $accountRelations = [];
 
     /**
      * Attributes.
@@ -183,7 +183,7 @@ class Event
      * @var int[]|EventAttribute[]
      * @since 1.0.0
      */
-    private array $attributes = [];
+    public array $attributes = [];
 
     /**
      * Constructor.
