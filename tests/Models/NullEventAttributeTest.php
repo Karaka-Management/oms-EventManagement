@@ -23,7 +23,7 @@ final class NullEventAttributeTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @covers Modules\EventManagement\Models\NullEventAttribute
-     * @group framework
+     * @group module
      */
     public function testNull() : void
     {
@@ -32,7 +32,7 @@ final class NullEventAttributeTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @covers Modules\EventManagement\Models\NullEventAttribute
-     * @group framework
+     * @group module
      */
     public function testId() : void
     {
@@ -42,7 +42,7 @@ final class NullEventAttributeTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @covers Modules\EventManagement\Models\NullEventAttribute
-     * @group framework
+     * @group module
      */
     public function testJsonSerialize() : void
     {
