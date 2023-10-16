@@ -37,7 +37,7 @@ final class NullEventAttributeValueTest extends \PHPUnit\Framework\TestCase
     public function testId() : void
     {
         $null = new NullEventAttributeValue(2);
-        self::assertEquals(2, $null->getId());
+        self::assertEquals(2, $null->id);
     }
 
     /**
