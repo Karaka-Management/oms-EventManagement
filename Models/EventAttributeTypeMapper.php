@@ -52,17 +52,17 @@ final class EventAttributeTypeMapper extends DataMapperFactory
      */
     public const HAS_MANY = [
         'l11n' => [
-            'mapper'            => EventAttributeTypeL11nMapper::class,
-            'table'             => 'eventmanagement_event_attr_type_l11n',
-            'self'              => 'eventmanagement_event_attr_type_l11n_type',
-            'column'            => 'content',
-            'external'          => null,
+            'mapper'   => EventAttributeTypeL11nMapper::class,
+            'table'    => 'eventmanagement_event_attr_type_l11n',
+            'self'     => 'eventmanagement_event_attr_type_l11n_type',
+            'column'   => 'content',
+            'external' => null,
         ],
         'defaults' => [
-            'mapper'            => EventAttributeValueMapper::class,
-            'table'             => 'eventmanagement_event_attr_default',
-            'self'              => 'eventmanagement_event_attr_default_type',
-            'external'          => 'eventmanagement_event_attr_default_value',
+            'mapper'   => EventAttributeValueMapper::class,
+            'table'    => 'eventmanagement_event_attr_default',
+            'self'     => 'eventmanagement_event_attr_default_type',
+            'external' => 'eventmanagement_event_attr_default_value',
         ],
     ];
 

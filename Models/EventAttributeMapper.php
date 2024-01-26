@@ -36,10 +36,10 @@ final class EventAttributeMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const COLUMNS = [
-        'eventmanagement_event_attr_id'     => ['name' => 'eventmanagement_event_attr_id',    'type' => 'int', 'internal' => 'id'],
-        'eventmanagement_event_attr_event'  => ['name' => 'eventmanagement_event_attr_event',  'type' => 'int', 'internal' => 'event'],
-        'eventmanagement_event_attr_type'   => ['name' => 'eventmanagement_event_attr_type',  'type' => 'int', 'internal' => 'type'],
-        'eventmanagement_event_attr_value'  => ['name' => 'eventmanagement_event_attr_value', 'type' => 'int', 'internal' => 'value'],
+        'eventmanagement_event_attr_id'    => ['name' => 'eventmanagement_event_attr_id',    'type' => 'int', 'internal' => 'id'],
+        'eventmanagement_event_attr_event' => ['name' => 'eventmanagement_event_attr_event',  'type' => 'int', 'internal' => 'event'],
+        'eventmanagement_event_attr_type'  => ['name' => 'eventmanagement_event_attr_type',  'type' => 'int', 'internal' => 'type'],
+        'eventmanagement_event_attr_value' => ['name' => 'eventmanagement_event_attr_value', 'type' => 'int', 'internal' => 'value'],
     ];
 
     /**
@@ -50,12 +50,12 @@ final class EventAttributeMapper extends DataMapperFactory
      */
     public const OWNS_ONE = [
         'type' => [
-            'mapper'            => EventAttributeTypeMapper::class,
-            'external'          => 'eventmanagement_event_attr_type',
+            'mapper'   => EventAttributeTypeMapper::class,
+            'external' => 'eventmanagement_event_attr_type',
         ],
         'value' => [
-            'mapper'            => EventAttributeValueMapper::class,
-            'external'          => 'eventmanagement_event_attr_value',
+            'mapper'   => EventAttributeValueMapper::class,
+            'external' => 'eventmanagement_event_attr_value',
         ],
     ];
 

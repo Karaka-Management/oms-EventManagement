@@ -39,21 +39,21 @@ final class EventMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const COLUMNS = [
-        'eventmanagement_event_id'                  => ['name' => 'eventmanagement_event_id',            'type' => 'int',          'internal' => 'id'],
-        'eventmanagement_event_name'                => ['name' => 'eventmanagement_event_name',          'type' => 'string',       'internal' => 'name'],
-        'eventmanagement_event_description'         => ['name' => 'eventmanagement_event_description',   'type' => 'string',       'internal' => 'description'],
-        'eventmanagement_event_type'                => ['name' => 'eventmanagement_event_type',          'type' => 'int',          'internal' => 'type'],
-        'eventmanagement_event_calendar'            => ['name' => 'eventmanagement_event_calendar',      'type' => 'int',          'internal' => 'calendar'],
-        'eventmanagement_event_start'               => ['name' => 'eventmanagement_event_start',         'type' => 'DateTime',     'internal' => 'start'],
-        'eventmanagement_event_end'                 => ['name' => 'eventmanagement_event_end',           'type' => 'DateTime',     'internal' => 'end'],
-        'eventmanagement_event_progress'            => ['name' => 'eventmanagement_event_progress',      'type' => 'int',          'internal' => 'progress'],
-        'eventmanagement_event_progress_type'       => ['name' => 'eventmanagement_event_progress_type', 'type' => 'int',          'internal' => 'progressType'],
-        'eventmanagement_event_budgetcosts'         => ['name' => 'eventmanagement_event_budgetcosts',         'type' => 'Serializable', 'internal' => 'budgetCosts'],
-        'eventmanagement_event_budgetearnings'      => ['name' => 'eventmanagement_event_budgetearnings',      'type' => 'Serializable', 'internal' => 'budgetEarnings'],
-        'eventmanagement_event_actualcosts'         => ['name' => 'eventmanagement_event_actualcosts',         'type' => 'Serializable', 'internal' => 'actualCosts'],
-        'eventmanagement_event_actualearnings'      => ['name' => 'eventmanagement_event_actualearnings',      'type' => 'Serializable', 'internal' => 'actualEarnings'],
-        'eventmanagement_event_created_by'          => ['name' => 'eventmanagement_event_created_by',    'type' => 'int',          'internal' => 'createdBy', 'readonly' => true],
-        'eventmanagement_event_created_at'          => ['name' => 'eventmanagement_event_created_at',    'type' => 'DateTimeImmutable', 'internal' => 'createdAt', 'readonly' => true],
+        'eventmanagement_event_id'             => ['name' => 'eventmanagement_event_id',            'type' => 'int',          'internal' => 'id'],
+        'eventmanagement_event_name'           => ['name' => 'eventmanagement_event_name',          'type' => 'string',       'internal' => 'name'],
+        'eventmanagement_event_description'    => ['name' => 'eventmanagement_event_description',   'type' => 'string',       'internal' => 'description'],
+        'eventmanagement_event_type'           => ['name' => 'eventmanagement_event_type',          'type' => 'int',          'internal' => 'type'],
+        'eventmanagement_event_calendar'       => ['name' => 'eventmanagement_event_calendar',      'type' => 'int',          'internal' => 'calendar'],
+        'eventmanagement_event_start'          => ['name' => 'eventmanagement_event_start',         'type' => 'DateTime',     'internal' => 'start'],
+        'eventmanagement_event_end'            => ['name' => 'eventmanagement_event_end',           'type' => 'DateTime',     'internal' => 'end'],
+        'eventmanagement_event_progress'       => ['name' => 'eventmanagement_event_progress',      'type' => 'int',          'internal' => 'progress'],
+        'eventmanagement_event_progress_type'  => ['name' => 'eventmanagement_event_progress_type', 'type' => 'int',          'internal' => 'progressType'],
+        'eventmanagement_event_budgetcosts'    => ['name' => 'eventmanagement_event_budgetcosts',         'type' => 'Serializable', 'internal' => 'budgetCosts'],
+        'eventmanagement_event_budgetearnings' => ['name' => 'eventmanagement_event_budgetearnings',      'type' => 'Serializable', 'internal' => 'budgetEarnings'],
+        'eventmanagement_event_actualcosts'    => ['name' => 'eventmanagement_event_actualcosts',         'type' => 'Serializable', 'internal' => 'actualCosts'],
+        'eventmanagement_event_actualearnings' => ['name' => 'eventmanagement_event_actualearnings',      'type' => 'Serializable', 'internal' => 'actualEarnings'],
+        'eventmanagement_event_created_by'     => ['name' => 'eventmanagement_event_created_by',    'type' => 'int',          'internal' => 'createdBy', 'readonly' => true],
+        'eventmanagement_event_created_at'     => ['name' => 'eventmanagement_event_created_at',    'type' => 'DateTimeImmutable', 'internal' => 'createdAt', 'readonly' => true],
     ];
 
     /**
@@ -69,7 +69,7 @@ final class EventMapper extends DataMapperFactory
             'external' => 'eventmanagement_task_relation_src',
             'self'     => 'eventmanagement_task_relation_dst',
         ],
-        'media' => [
+        'files' => [
             'mapper'   => MediaMapper::class,
             'table'    => 'eventmanagement_event_media',
             'external' => 'eventmanagement_event_media_dst',
@@ -92,8 +92,8 @@ final class EventMapper extends DataMapperFactory
      */
     public const OWNS_ONE = [
         'calendar' => [
-            'mapper'     => \Modules\Calendar\Models\CalendarMapper::class,
-            'external'   => 'eventmanagement_event_calendar',
+            'mapper'   => \Modules\Calendar\Models\CalendarMapper::class,
+            'external' => 'eventmanagement_event_calendar',
         ],
     ];
 
@@ -105,8 +105,8 @@ final class EventMapper extends DataMapperFactory
      */
     public const BELONGS_TO = [
         'createdBy' => [
-            'mapper'     => AccountMapper::class,
-            'external'   => 'eventmanagement_event_created_by',
+            'mapper'   => AccountMapper::class,
+            'external' => 'eventmanagement_event_created_by',
         ],
     ];
 

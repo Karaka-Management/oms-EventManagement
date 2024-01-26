@@ -13,7 +13,6 @@
 declare(strict_types=1);
 
 $event = $this->data['event'];
-$tasks = $event->getTasks();
 
 echo $this->data['nav']->render(); ?>
 
@@ -53,7 +52,7 @@ echo $this->data['nav']->render(); ?>
 
     <div class="col-xs-12 col-md-6">
         <div class="box wf-100">
-            <?= $this->getData('tasklist')->render($event->getTasks()); ?>
+            <?= $this->getData('tasklist')->render($event->tasks); ?>
         </div>
     </div>
 </div>
@@ -64,7 +63,7 @@ echo $this->data['nav']->render(); ?>
     </div>
 
     <div class="col-xs-12 col-md-6">
-    <?= $this->getData('medialist')->render($event->getMedia()); ?>
+    <?= $this->getData('medialist')->render($event->files); ?>
     </div>
 </div>
 

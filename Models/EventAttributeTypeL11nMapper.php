@@ -37,10 +37,10 @@ final class EventAttributeTypeL11nMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const COLUMNS = [
-        'eventmanagement_event_attr_type_l11n_id'        => ['name' => 'eventmanagement_event_attr_type_l11n_id',       'type' => 'int',    'internal' => 'id'],
-        'eventmanagement_event_attr_type_l11n_title'     => ['name' => 'eventmanagement_event_attr_type_l11n_title',    'type' => 'string', 'internal' => 'content', 'autocomplete' => true],
-        'eventmanagement_event_attr_type_l11n_type'      => ['name' => 'eventmanagement_event_attr_type_l11n_type',      'type' => 'int',    'internal' => 'ref'],
-        'eventmanagement_event_attr_type_l11n_lang'      => ['name' => 'eventmanagement_event_attr_type_l11n_lang', 'type' => 'string', 'internal' => 'language'],
+        'eventmanagement_event_attr_type_l11n_id'    => ['name' => 'eventmanagement_event_attr_type_l11n_id',       'type' => 'int',    'internal' => 'id'],
+        'eventmanagement_event_attr_type_l11n_title' => ['name' => 'eventmanagement_event_attr_type_l11n_title',    'type' => 'string', 'internal' => 'content', 'autocomplete' => true],
+        'eventmanagement_event_attr_type_l11n_type'  => ['name' => 'eventmanagement_event_attr_type_l11n_type',      'type' => 'int',    'internal' => 'ref'],
+        'eventmanagement_event_attr_type_l11n_lang'  => ['name' => 'eventmanagement_event_attr_type_l11n_lang', 'type' => 'string', 'internal' => 'language'],
     ];
 
     /**

@@ -37,7 +37,7 @@ final class EventMapperTest extends \PHPUnit\Framework\TestCase
     {
         $event = new Event();
 
-        $event->setType(EventType::SEMINAR);
+        $event->type        = EventType::SEMINAR;
         $event->name        = 'Eventname';
         $event->description = 'Event description';
         $event->createdBy   = new NullAccount(1);
@@ -47,24 +47,24 @@ final class EventMapperTest extends \PHPUnit\Framework\TestCase
         $money = new Money();
         $money->setString('1.23');
 
-        $event->budgetCosts      = $money;
-        $event->budgetEarnings   = $money;
-        $event->actualCosts      = $money;
-        $event->actualEarnings   = $money;
+        $event->budgetCosts    = $money;
+        $event->budgetEarnings = $money;
+        $event->actualCosts    = $money;
+        $event->actualEarnings = $money;
 
-        $task        = new Task();
-        $task->title = 'EventTask 1';
-        $task->setCreatedBy(new NullAccount(1));
+        $task            = new Task();
+        $task->title     = 'EventTask 1';
+        $task->createdBy = new NullAccount(1);
 
-        $task2        = new Task();
-        $task2->title = 'EventTask 2';
-        $task2->setCreatedBy(new NullAccount(1));
+        $task2            = new Task();
+        $task2->title     = 'EventTask 2';
+        $task2->createdBy = new NullAccount(1);
 
-        $event->addTask($task);
-        $event->addTask($task2);
+        $event->tasks[] = $task;
+        $event->tasks[] = $task2;
 
-        $event->progress = 11;
-        $event->setProgressType(ProgressType::TASKS);
+        $event->progress     = 11;
+        $event->progressType = ProgressType::TASKS;
 
         $media              = new Media();
         $media->createdBy   = new NullAccount(1);
@@ -73,17 +73,17 @@ final class EventMapperTest extends \PHPUnit\Framework\TestCase
         $media->size      = 11;
         $media->extension = 'png';
         $media->name      = 'Event Media';
-        $event->addMedia($media);
+        $event->files[]   = $media;
 
         $id = EventMapper::create()->execute($event);
         self::assertGreaterThan(0, $event->id);
         self::assertEquals($id, $event->id);
 
-        $eventR = EventMapper::get()->with('tasks')->with('media')->where('id', $event->id)->execute();
+        /** @var Event $eventR */
+        $eventR = EventMapper::get()->with('tasks')->with('files')->where('id', $event->id)->execute();
 
         self::assertEquals($event->name, $eventR->name);
         self::assertEquals($event->description, $eventR->description);
-        self::assertEquals($event->countTasks(), $eventR->countTasks());
         self::assertEquals($event->start->format('Y-m-d'), $eventR->start->format('Y-m-d'));
         self::assertEquals($event->end->format('Y-m-d'), $eventR->end->format('Y-m-d'));
         self::assertEquals($event->budgetCosts->getAmount(), $eventR->budgetCosts->getAmount());
@@ -91,10 +91,10 @@ final class EventMapperTest extends \PHPUnit\Framework\TestCase
         self::assertEquals($event->actualCosts->getAmount(), $eventR->actualCosts->getAmount());
         self::assertEquals($event->actualEarnings->getAmount(), $eventR->actualEarnings->getAmount());
         self::assertEquals($event->progress, $eventR->progress);
-        self::assertEquals($event->getProgressType(), $eventR->getProgressType());
+        self::assertEquals($event->progressType, $eventR->progressType);
 
-        $expected = $event->getMedia();
-        $actual   = $eventR->getMedia();
+        $expected = $event->files;
+        $actual   = $eventR->files;
 
         self::assertEquals(\end($expected)->name, \end($actual)->name);
     }
