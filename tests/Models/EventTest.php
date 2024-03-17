@@ -96,7 +96,7 @@ final class EventTest extends \PHPUnit\Framework\TestCase
                 'actualCosts'    => new FloatInt(),
                 'actualEarnings' => new FloatInt(),
                 'tasks'          => [],
-                'media'          => [],
+                'files'          => [],
                 'progress'       => 10,
                 'progressType'   => ProgressType::TASKS,
             ],
