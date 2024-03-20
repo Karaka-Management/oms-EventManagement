@@ -19,31 +19,23 @@ use Modules\EventManagement\Models\NullEventAttribute;
 /**
  * @internal
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\EventManagement\Models\NullEventAttribute::class)]
 final class NullEventAttributeTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @covers \Modules\EventManagement\Models\NullEventAttribute
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testNull() : void
     {
         self::assertInstanceOf('\Modules\EventManagement\Models\EventAttribute', new NullEventAttribute());
     }
 
-    /**
-     * @covers \Modules\EventManagement\Models\NullEventAttribute
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testId() : void
     {
         $null = new NullEventAttribute(2);
         self::assertEquals(2, $null->id);
     }
 
-    /**
-     * @covers \Modules\EventManagement\Models\NullEventAttribute
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testJsonSerialize() : void
     {
         $null = new NullEventAttribute(2);

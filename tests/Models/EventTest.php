@@ -22,6 +22,7 @@ use phpOMS\Stdlib\Base\FloatInt;
 /**
  * @internal
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\EventManagement\Models\Event::class)]
 final class EventTest extends \PHPUnit\Framework\TestCase
 {
     private Event $event;
@@ -34,10 +35,7 @@ final class EventTest extends \PHPUnit\Framework\TestCase
         $this->event = new Event();
     }
 
-    /**
-     * @covers \Modules\EventManagement\Models\Event
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testDefault() : void
     {
         self::assertEquals(0, $this->event->id);
@@ -55,20 +53,14 @@ final class EventTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(ProgressType::MANUAL, $this->event->progressType);
     }
 
-    /**
-     * @covers \Modules\EventManagement\Models\Event
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testProgressInputOutput() : void
     {
         $this->event->progress = 10;
         self::assertEquals(10, $this->event->progress);
     }
 
-    /**
-     * @covers \Modules\EventManagement\Models\Event
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testSerialize() : void
     {
         $this->event->name         = 'Name';

@@ -27,12 +27,10 @@ use phpOMS\Localization\Money;
 /**
  * @internal
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\EventManagement\Models\EventMapper::class)]
 final class EventMapperTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @covers \Modules\EventManagement\Models\EventMapper
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testCRUD() : void
     {
         $event = new Event();
@@ -99,10 +97,7 @@ final class EventMapperTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(\end($expected)->name, \end($actual)->name);
     }
 
-    /**
-     * @covers \Modules\EventManagement\Models\EventMapper
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testNewest() : void
     {
         $newest = EventMapper::getAll()->sort('id', OrderType::DESC)->limit(1)->execute();
