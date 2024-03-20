@@ -35,7 +35,7 @@ final class EventTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\EventManagement\Models\Event
+     * @covers \Modules\EventManagement\Models\Event
      * @group module
      */
     public function testDefault() : void
@@ -56,7 +56,7 @@ final class EventTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\EventManagement\Models\Event
+     * @covers \Modules\EventManagement\Models\Event
      * @group module
      */
     public function testProgressInputOutput() : void
@@ -66,7 +66,7 @@ final class EventTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\EventManagement\Models\Event
+     * @covers \Modules\EventManagement\Models\Event
      * @group module
      */
     public function testSerialize() : void

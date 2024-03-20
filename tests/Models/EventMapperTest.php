@@ -30,7 +30,7 @@ use phpOMS\Localization\Money;
 final class EventMapperTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @covers Modules\EventManagement\Models\EventMapper
+     * @covers \Modules\EventManagement\Models\EventMapper
      * @group module
      */
     public function testCRUD() : void
@@ -100,7 +100,7 @@ final class EventMapperTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\EventManagement\Models\EventMapper
+     * @covers \Modules\EventManagement\Models\EventMapper
      * @group module
      */
     public function testNewest() : void

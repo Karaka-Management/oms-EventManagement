@@ -22,7 +22,7 @@ use Modules\EventManagement\Models\NullEventAttributeValue;
 final class NullEventAttributeValueTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @covers Modules\EventManagement\Models\NullEventAttributeValue
+     * @covers \Modules\EventManagement\Models\NullEventAttributeValue
      * @group module
      */
     public function testNull() : void
@@ -31,7 +31,7 @@ final class NullEventAttributeValueTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\EventManagement\Models\NullEventAttributeValue
+     * @covers \Modules\EventManagement\Models\NullEventAttributeValue
      * @group module
      */
     public function testId() : void
@@ -41,7 +41,7 @@ final class NullEventAttributeValueTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\EventManagement\Models\NullEventAttributeValue
+     * @covers \Modules\EventManagement\Models\NullEventAttributeValue
      * @group module
      */
     public function testJsonSerialize() : void
