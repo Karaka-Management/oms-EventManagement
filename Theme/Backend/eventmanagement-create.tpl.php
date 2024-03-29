@@ -22,7 +22,7 @@ echo $this->data['nav']->render(); ?>
                 <form>
                     <table class="layout wf-100">
                         <tr><td colspan="3"><label for="iName"><?= $this->getHtml('Name'); ?></label>
-                        <tr><td colspan="2"><input type="text" id="iName" name="name" placeholder="" required><td>
+                        <tr><td colspan="2"><input type="text" id="iName" name="name" required><td>
                         <tr><td colspan="3"><label for="iDescription"><?= $this->getHtml('Description'); ?></label>
                         <tr><td colspan="2"><textarea id="iDescription" name="description"></textarea><td>
                         <tr><td colspan="3"><label for="iStatus"><?= $this->getHtml('Status'); ?></label>
@@ -37,9 +37,9 @@ echo $this->data['nav']->render(); ?>
                         <tr><td><select id="iStatus" name="status">
                                     <option value="">
                                 </select>
-                            <td><span class="input"><button type="button" formaction=""><i class="g-icon">book</i></button><input type="text" id="iUser" name="user" placeholder=""></span><td><button><?= $this->getHtml('Add', '0', '0'); ?></button>
+                            <td><span class="input"><button type="button" formaction=""><i class="g-icon">book</i></button><input type="text" id="iUser" name="user"></span><td><button><?= $this->getHtml('Add', '0', '0'); ?></button>
                         <tr><td colspan="3"><label for="iBudget"><?= $this->getHtml('Budget'); ?></label>
-                        <tr><td colspan="2"><input type="text" id="iBudget" name="budget" placeholder=""><td>
+                        <tr><td colspan="2"><input type="text" id="iBudget" name="budget"><td>
                         <tr><td colspan="3"><input type="submit" value="<?= $this->getHtml('Create', '0', '0'); ?>" name="create-item">
                     </table>
                 </form>

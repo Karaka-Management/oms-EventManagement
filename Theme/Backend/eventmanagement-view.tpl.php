@@ -25,7 +25,7 @@ echo $this->data['nav']->render(); ?>
                     <table class="layout wf-100">
                         <tbody>
                         <tr><td colspan="2"><label for="iName"><?= $this->getHtml('Name'); ?></label>
-                        <tr><td colspan="2"><input type="text" id="iName" name="name" placeholder="Name" value="<?= $this->printHtml($event->getName()); ?>" required>
+                        <tr><td colspan="2"><input type="text" id="iName" name="name" value="<?= $this->printHtml($event->getName()); ?>" required>
                         <tr><td><label for="iStart"><?= $this->getHtml('Start'); ?></label>
                             <td><label for="iEnd"><?= $this->getHtml('End'); ?></label>
                         <tr><td><input type="datetime-local" id="iStart" name="start" value="<?= $this->printHtml($event->getStart()->format('Y-m-d\TH:i:s')); ?>">
@@ -42,7 +42,7 @@ echo $this->data['nav']->render(); ?>
                                 </select>
                             <td><input type="text" id="iProgress" name="progress" value="<?= $event->getProgress(); ?>"<?= $event->getProgressType() !== \Modules\EventManagement\Models\ProgressType::MANUAL ? ' disabled' : ''; ?>>
                         <tr><td><label for="iBudget"><?= $this->getHtml('Budget'); ?></label><td><label for="iActual"><?= $this->getHtml('Actual'); ?></label>
-                        <tr><td><input type="text" id="iBudget" name="budget" placeholder=""><td><input type="text" id="iActual" name="actual">
+                        <tr><td><input type="text" id="iBudget" name="budget"><td><input type="text" id="iActual" name="actual">
                         <tr><td colspan="2"><input type="submit" value="<?= $this->getHtml('Save', '0', '0'); ?>" name="save-eventmanagement-profile">
                     </table>
                 </form>

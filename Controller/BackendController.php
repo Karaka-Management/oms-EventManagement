@@ -52,7 +52,7 @@ final class BackendController extends Controller
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1004201001, $request, $response);
 
         /** @var \Modules\EventManagement\Models\Event[] $events */
-        $events               = EventMapper::getAll()->sort('id', OrderType::DESC)->limit(25);
+        $events               = EventMapper::getAll()->sort('id', OrderType::DESC)->limit(25)->executeGetArray();
         $view->data['events'] = $events;
 
         return $view;
