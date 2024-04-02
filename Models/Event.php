@@ -79,6 +79,14 @@ class Event
     public string $description = '';
 
     /**
+     * Project raw description.
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    public string $descriptionRaw = '';
+
+    /**
      * Calendar.
      *
      * @var Calendar

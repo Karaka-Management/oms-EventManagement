@@ -100,7 +100,7 @@ final class EventMapperTest extends \PHPUnit\Framework\TestCase
     #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testNewest() : void
     {
-        $newest = EventMapper::getAll()->sort('id', OrderType::DESC)->limit(1)->execute();
+        $newest = EventMapper::getAll()->sort('id', OrderType::DESC)->limit(1)->executeGetArray();
 
         self::assertCount(1, $newest);
     }

@@ -73,7 +73,7 @@ final class BackendController extends Controller
     public function viewEventManagementCreate(RequestAbstract $request, ResponseAbstract $response, array $data = []) : RenderableInterface
     {
         $view = new View($this->app->l11nManager, $request, $response);
-        $view->setTemplate('/Modules/EventManagement/Theme/Backend/eventmanagement-create');
+        $view->setTemplate('/Modules/EventManagement/Theme/Backend/eventmanagement-view');
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1004201001, $request, $response);
 
         return $view;

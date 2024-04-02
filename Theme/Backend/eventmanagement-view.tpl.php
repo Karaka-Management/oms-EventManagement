@@ -12,65 +12,115 @@
  */
 declare(strict_types=1);
 
-$event = $this->data['event'];
+use Modules\EventManagement\Models\NullEvent;
+use Modules\EventManagement\Models\ProgressType;
+
+/** \Modules\EventManagement\Models\Event $event */
+$event = $this->data['event'] ?? new NullEvent();
+
+$isNew = $event->id === 0;
 
 echo $this->data['nav']->render(); ?>
 
 <div class="row">
     <div class="col-xs-12 col-md-6">
-        <section class="box wf-100">
-            <header><h1><?= $this->printHtml($event->getName()); ?></h1></header>
-            <div class="inner">
-                <form id="fEvent" method="POST" action="<?= \phpOMS\Uri\UriFactory::build('{/api}eventmanagement?{?}&csrf={$CSRF}'); ?>">
-                    <table class="layout wf-100">
-                        <tbody>
-                        <tr><td colspan="2"><label for="iName"><?= $this->getHtml('Name'); ?></label>
-                        <tr><td colspan="2"><input type="text" id="iName" name="name" value="<?= $this->printHtml($event->getName()); ?>" required>
-                        <tr><td><label for="iStart"><?= $this->getHtml('Start'); ?></label>
-                            <td><label for="iEnd"><?= $this->getHtml('End'); ?></label>
-                        <tr><td><input type="datetime-local" id="iStart" name="start" value="<?= $this->printHtml($event->getStart()->format('Y-m-d\TH:i:s')); ?>">
-                            <td><input type="datetime-local" id="iEnd" name="end" value="<?= $this->printHtml($event->getEnd()->format('Y-m-d\TH:i:s')); ?>">
-                        <tr><td colspan="2"><label for="iDescription"><?= $this->getHtml('Description'); ?></label>
-                        <tr><td colspan="2"><textarea id="iDescription" name="desc"><?= $this->printHtml($event->description); ?></textarea>
-                        <tr><td colspan="2"><label for="iProgressType"><?= $this->getHtml('Progress'); ?></label>
-                        <tr><td><select id="iProgressType" name="progressType">
-                                    <option value="<?= \Modules\EventManagement\Models\ProgressType::MANUAL; ?>"><?= $this->getHtml('Manual'); ?>
-                                    <option value="<?= \Modules\EventManagement\Models\ProgressType::LINEAR; ?>"><?= $this->getHtml('Linear'); ?>
-                                    <option value="<?= \Modules\EventManagement\Models\ProgressType::EXPONENTIAL; ?>"><?= $this->getHtml('Exponential'); ?>
-                                    <option value="<?= \Modules\EventManagement\Models\ProgressType::LOG; ?>"><?= $this->getHtml('Log'); ?>
-                                    <option value="<?= \Modules\EventManagement\Models\ProgressType::TASKS; ?>"><?= $this->getHtml('Tasks'); ?>
-                                </select>
-                            <td><input type="text" id="iProgress" name="progress" value="<?= $event->getProgress(); ?>"<?= $event->getProgressType() !== \Modules\EventManagement\Models\ProgressType::MANUAL ? ' disabled' : ''; ?>>
-                        <tr><td><label for="iBudget"><?= $this->getHtml('Budget'); ?></label><td><label for="iActual"><?= $this->getHtml('Actual'); ?></label>
-                        <tr><td><input type="text" id="iBudget" name="budget"><td><input type="text" id="iActual" name="actual">
-                        <tr><td colspan="2"><input type="submit" value="<?= $this->getHtml('Save', '0', '0'); ?>" name="save-eventmanagement-profile">
-                    </table>
-                </form>
+        <section class="portlet">
+            <form id="fEvent" method="<?= $isNew ? 'PUT' : 'POST'; ?>" action="<?= \phpOMS\Uri\UriFactory::build('{/api}eventmanagement?{?}&csrf={$CSRF}'); ?>">
+            <div class="portlet-head"><?= $this->getHtml('Event'); ?></div>
+            <div class="portlet-body">
+                <div class="form-group">
+                    <label for="iId"><?= $this->getHtml('ID', '0', '0'); ?></label>
+                    <input type="text" name="id" id="iId" value="<?= $event->id; ?>" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label for="iName"><?= $this->getHtml('Name'); ?></label>
+                    <input type="text" id="iName" name="name" value="<?= $this->printHtml($event->name); ?>" required>
+                </div>
+
+                <div class="flex-line">
+                    <div>
+                        <div class="form-group">
+                            <label for="iStart"><?= $this->getHtml('Start'); ?></label>
+                            <input type="datetime-local" id="iStart" name="start" value="<?= $this->printHtml($event->start->format('Y-m-d\TH:i:s')); ?>">
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-group">
+                            <label for="iEnd"><?= $this->getHtml('End'); ?></label>
+                            <input type="datetime-local" id="iEnd" name="end" value="<?= $this->printHtml($event->end->format('Y-m-d\TH:i:s')); ?>">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="iDescription"><?= $this->getHtml('Description'); ?></label>
+                    <textarea id="iDescription" name="desc"><?= $this->printHtml($event->description); ?></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="iProgressType"><?= $this->getHtml('Progress'); ?></label>
+                    <div class="flex-line wf-100">
+                        <div>
+                            <select id="iProgressType" name="progressType">
+                                <option value="<?= ProgressType::MANUAL; ?>"><?= $this->getHtml('Manual'); ?>
+                                <option value="<?= ProgressType::LINEAR; ?>"><?= $this->getHtml('Linear'); ?>
+                                <option value="<?= ProgressType::EXPONENTIAL; ?>"><?= $this->getHtml('Exponential'); ?>
+                                <option value="<?= ProgressType::LOG; ?>"><?= $this->getHtml('Log'); ?>
+                                <option value="<?= ProgressType::TASKS; ?>"><?= $this->getHtml('Tasks'); ?>
+                            </select>
+                        </div>
+                        <div>
+                            <input type="text" id="iProgress" name="progress" value="<?= $event->progress; ?>"<?= $event->progressType !== ProgressType::MANUAL ? ' disabled' : ''; ?>>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-line">
+                    <div>
+                        <div class="form-group">
+                        <label for="iBudget"><?= $this->getHtml('Budget'); ?></label><td>
+                            <input type="text" id="iBudget" name="budget">
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-group">
+                        <label for="iActual"><?= $this->getHtml('Actual'); ?></label>
+                            <input type="text" id="iActual" name="actual">
+                        </div>
+                    </div>
+                </div>
             </div>
+            <div class="portlet-foot">
+                <?php if ($isNew) : ?>
+                    <input id="iCreateSubmit" type="Submit" value="<?= $this->getHtml('Create', '0', '0'); ?>">
+                <?php else : ?>
+                    <input id="iSaveSubmit" type="Submit" value="<?= $this->getHtml('Save', '0', '0'); ?>">
+                <?php endif; ?>
+            </div>
+            </form>
         </section>
     </div>
 
+    <?php if (!$isNew) : ?>
     <div class="col-xs-12 col-md-6">
         <div class="box wf-100">
             <?= $this->getData('tasklist')->render($event->tasks); ?>
         </div>
     </div>
+    <?php endif; ?>
 </div>
 
+<?php if (!$isNew) : ?>
 <div class="row">
     <div class="col-xs-12 col-md-6">
         <?= $this->getData('calendar')->render($event->getCalendar()); ?>
     </div>
 
     <div class="col-xs-12 col-md-6">
-    <?= $this->getData('medialist')->render($event->files); ?>
+        <?= $this->getData('medialist')->render($event->files); ?>
     </div>
 </div>
-
-<div class="row">
-    <div class="col-xs-12 col-md-6">
-        <section class="box wf-100">
-            <header><h1>Finances</h1></header>
-        </section>
-    </div>
-</div>
+<?php endif; ?>
