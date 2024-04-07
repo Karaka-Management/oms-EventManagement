@@ -22,6 +22,7 @@ return [
         [
             'dest'       => '\Modules\EventManagement\Controller\BackendController:viewEventManagementList',
             'verb'       => RouteVerb::GET,
+            'active' => true,
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::READ,
@@ -33,6 +34,7 @@ return [
         [
             'dest'       => '\Modules\EventManagement\Controller\BackendController:viewEventManagementCreate',
             'verb'       => RouteVerb::GET,
+            'active' => true,
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::CREATE,
@@ -44,6 +46,7 @@ return [
         [
             'dest'       => '\Modules\EventManagement\Controller\BackendController:viewEventManagementView',
             'verb'       => RouteVerb::GET,
+            'active' => true,
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::READ,

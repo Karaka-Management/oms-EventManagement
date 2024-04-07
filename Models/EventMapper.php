@@ -20,7 +20,7 @@ use Modules\Tasks\Models\TaskMapper;
 use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
 
 /**
- * Mapper class.
+ * Event mapper class.
  *
  * @package Modules\EventManagement\Models
  * @license OMS License 2.0
