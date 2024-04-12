@@ -54,6 +54,7 @@ final class EventMapper extends DataMapperFactory
         'eventmanagement_event_actualearnings' => ['name' => 'eventmanagement_event_actualearnings',      'type' => 'Serializable', 'internal' => 'actualEarnings'],
         'eventmanagement_event_created_by'     => ['name' => 'eventmanagement_event_created_by',    'type' => 'int',          'internal' => 'createdBy', 'readonly' => true],
         'eventmanagement_event_created_at'     => ['name' => 'eventmanagement_event_created_at',    'type' => 'DateTimeImmutable', 'internal' => 'createdAt', 'readonly' => true],
+        'eventmanagement_event_unit'           => ['name' => 'eventmanagement_event_unit',    'type' => 'int',          'internal' => 'unit'],
     ];
 
     /**

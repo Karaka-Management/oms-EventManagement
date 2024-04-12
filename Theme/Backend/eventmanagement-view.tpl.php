@@ -15,7 +15,7 @@ declare(strict_types=1);
 use Modules\EventManagement\Models\NullEvent;
 use Modules\EventManagement\Models\ProgressType;
 
-/** \Modules\EventManagement\Models\Event $event */
+/** @var \Modules\EventManagement\Models\Event $event */
 $event = $this->data['event'] ?? new NullEvent();
 
 $isNew = $event->id === 0;
@@ -72,7 +72,7 @@ echo $this->data['nav']->render(); ?>
                             </select>
                         </div>
                         <div>
-                            <input type="text" id="iProgress" name="progress" value="<?= $event->progress; ?>"<?= $event->progressType !== ProgressType::MANUAL ? ' disabled' : ''; ?>>
+                            <input type="number" id="iProgress" name="progress" step="1" min="0" max="100" value="<?= $event->progress; ?>"<?= $event->progressType !== ProgressType::MANUAL ? ' disabled' : ''; ?>>
                         </div>
                     </div>
                 </div>
@@ -81,14 +81,14 @@ echo $this->data['nav']->render(); ?>
                     <div>
                         <div class="form-group">
                         <label for="iBudget"><?= $this->getHtml('Budget'); ?></label><td>
-                            <input type="text" id="iBudget" name="budget">
+                            <input type="number" step="any" id="iBudget" name="budget">
                         </div>
                     </div>
 
                     <div>
                         <div class="form-group">
                         <label for="iActual"><?= $this->getHtml('Actual'); ?></label>
-                            <input type="text" id="iActual" name="actual">
+                            <input type="number" step="any" id="iActual" name="actual">
                         </div>
                     </div>
                 </div>

@@ -82,6 +82,13 @@
                 "null": false,
                 "foreignTable": "account",
                 "foreignKey": "account_id"
+            },
+            "eventmanagement_event_unit": {
+                "name": "eventmanagement_event_unit",
+                "type": "INT",
+                "null": false,
+                "foreignTable": "unit",
+                "foreignKey": "unit_id"
             }
         }
     },

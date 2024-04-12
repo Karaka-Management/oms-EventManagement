@@ -84,18 +84,20 @@ final class ApiController extends Controller
         $event->progress           = $request->getDataInt('progress') ?? 0;
         $event->budgetCosts->value = $request->getDataInt('budgetcosts') ?? 0;
         $event->actualCosts->value = $request->getDataInt('actualcosts') ?? 0;
+        $event->unit               = $request->getDataInt('unit') ?? $this->app->unitId;
 
         // @todo implement unit
         //$event->unit = $this->app->unitId;
 
-        if (!empty($uploadedFiles = $request->files)) {
+        // @todo implement event directory
+        if (!empty($request->files)) {
             $uploaded = $this->app->moduleManager->get('Media', 'Api')->uploadFiles(
-                [],
-                [],
-                $uploadedFiles,
-                $request->header->account,
-                __DIR__ . '/../../../Modules/Media/Files/Modules/EventManagement',
-                '/Modules/EventManagement',
+                names: [],
+                fileNames: [],
+                files: $request->files,
+                account: $request->header->account,
+                basePath: __DIR__ . '/../../../Modules/Media/Files/Modules/EventManagement',
+                virtualPath: '/Modules/EventManagement',
             );
 
             foreach ($uploaded as $media) {

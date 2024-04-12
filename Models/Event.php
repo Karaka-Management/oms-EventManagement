@@ -174,6 +174,8 @@ class Event
      */
     public array $accountRelations = [];
 
+    public int $unit = 0;
+
     /**
      * Constructor.
      *
