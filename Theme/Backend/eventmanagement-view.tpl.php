@@ -56,7 +56,7 @@ echo $this->data['nav']->render(); ?>
 
                 <div class="form-group">
                     <label for="iDescription"><?= $this->getHtml('Description'); ?></label>
-                    <textarea id="iDescription" name="desc"><?= $this->printHtml($event->description); ?></textarea>
+                    <textarea id="iDescription" name="desc"><?= $this->printTextarea($event->descriptionRaw); ?></textarea>
                 </div>
 
                 <div class="form-group">
@@ -103,24 +103,4 @@ echo $this->data['nav']->render(); ?>
             </form>
         </section>
     </div>
-
-    <?php if (!$isNew) : ?>
-    <div class="col-xs-12 col-md-6">
-        <div class="box wf-100">
-            <?= $this->getData('tasklist')->render($event->tasks); ?>
-        </div>
-    </div>
-    <?php endif; ?>
 </div>
-
-<?php if (!$isNew) : ?>
-<div class="row">
-    <div class="col-xs-12 col-md-6">
-        <?= $this->getData('calendar')->render($event->getCalendar()); ?>
-    </div>
-
-    <div class="col-xs-12 col-md-6">
-        <?= $this->getData('medialist')->render($event->files); ?>
-    </div>
-</div>
-<?php endif; ?>
