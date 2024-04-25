@@ -41,6 +41,7 @@ final class EventMapperTest extends \PHPUnit\Framework\TestCase
         $event->createdBy   = new NullAccount(1);
         $event->start       = new \DateTime('2000-05-05');
         $event->end         = new \DateTime('2005-05-05');
+        $event->unit        = 1;
 
         $money = new Money();
         $money->setString('1.23');
