@@ -12,11 +12,6 @@
  */
 declare(strict_types=1);
 
-$footerView = new \phpOMS\Views\PaginationView($this->l11nManager, $this->request, $this->response);
-$footerView->setTemplate('/Web/Templates/Lists/Footer/PaginationBig');
-$footerView->setPages(20);
-$footerView->setPage(1);
-
 $events = $this->data['events'];
 
 echo $this->data['nav']->render(); ?>
@@ -29,19 +24,22 @@ echo $this->data['nav']->render(); ?>
             <table class="default sticky">
                 <thead>
                 <tr>
+                    <td><?= $this->getHtml('Progress'); ?>
                     <td class="wf-100"><?= $this->getHtml('Title'); ?>
                     <td><?= $this->getHtml('Start'); ?>
                     <td><?= $this->getHtml('End'); ?>
                 <tbody>
-                <?php $count = 0; foreach ($events as $key => $value) : ++$count;
-                $url         = \phpOMS\Uri\UriFactory::build('eventmanagement/view?{?}&id=' . $value->id); ?>
+                <?php $count = 0;
+                foreach ($events as $key => $value) : ++$count;
+                    $url = \phpOMS\Uri\UriFactory::build('{/base}/eventmanagement/view?{?}&id=' . $value->id); ?>
                 <tr tabindex="0" data-href="<?= $url; ?>">
+                    <td data-label="<?= $this->getHtml('Progress'); ?>"><a href="<?= $url; ?>"><?= $this->data['progress'][$value->id] ?? 0; ?> %</a>
                     <td data-label="<?= $this->getHtml('Name'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($value->name); ?></a>
                     <td data-label="<?= $this->getHtml('Start'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($value->start?->format('Y-m-d')); ?></a>
                     <td data-label="<?= $this->getHtml('End'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($value->end?->format('Y-m-d')); ?></a>
                 <?php endforeach; ?>
                 <?php if ($count === 0) : ?>
-                <tr><td colspan="5" class="empty"><?= $this->getHtml('Empty', '0', '0'); ?>
+                <tr><td colspan="4" class="empty"><?= $this->getHtml('Empty', '0', '0'); ?>
                 <?php endif; ?>
             </table>
             </div>

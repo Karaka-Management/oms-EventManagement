@@ -15,9 +15,12 @@ declare(strict_types=1);
 namespace Modules\EventManagement\Controller;
 
 use Modules\EventManagement\Models\EventMapper;
+use Modules\EventManagement\Models\ProgressType;
 use phpOMS\Asset\AssetType;
 use phpOMS\Contract\RenderableInterface;
+use phpOMS\DataStorage\Database\Query\Builder;
 use phpOMS\DataStorage\Database\Query\OrderType;
+use phpOMS\Math\Number\Numbers;
 use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
 use phpOMS\Views\View;
@@ -51,9 +54,58 @@ final class BackendController extends Controller
         $view->setTemplate('/Modules/EventManagement/Theme/Backend/eventmanagement-list');
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1004201001, $request, $response);
 
-        /** @var \Modules\EventManagement\Models\Event[] $events */
-        $events               = EventMapper::getAll()->sort('id', OrderType::DESC)->limit(25)->executeGetArray();
-        $view->data['events'] = $events;
+        $view->data['events'] = EventMapper::getAll()
+            ->sort('id', OrderType::DESC)
+            ->limit(25)->executeGetArray();
+
+        // Evaluate progress
+        $view->data['progress'] = [];
+
+        $taskProgress = [];
+
+        $now = new \DateTime('now');
+
+        /** @var \Modules\EventManagement\Models\Event $event */
+        foreach ($view->data['events'] as $event) {
+            if ($event->progressType === ProgressType::TASKS) {
+                $taskProgress[] = $event->id;
+            } elseif ($event->progressType === ProgressType::LINEAR) {
+                $duration = (int) $event->start->diff($event->end)->format('%a');
+                $progress = (int) $event->start->diff($now)->format('%a');
+
+                $view->data['progress'][$event->id] = (int) \min(100, $duration / $progress * 100);
+            } elseif ($event->progressType === ProgressType::EXPONENTIAL) {
+                $duration = (int) $event->start->diff($event->end)->format('%a');
+                $progress = (int) $event->start->diff($now)->format('%a');
+
+                $view->data['progress'][$event->id] = (int) Numbers::remapRangeExponentially($progress, $duration);
+            } elseif ($event->progressType === ProgressType::LOG) {
+                $duration = (int) $event->start->diff($event->end)->format('%a');
+                $progress = (int) $event->start->diff($now)->format('%a');
+
+                $view->data['progress'][$event->id] = (int) Numbers::remapRangeLog($progress, $duration);
+            } else {
+                $view->data['progress'][$event->id] = $event->progress;
+            }
+        }
+
+        // Count tasks per event where tasks are used as progress indication
+        $eventIds = \implode(',', $taskProgress);
+
+        $sql = <<<SQL
+        SELECT eventmanagement_task_relation_dst as id,
+            COUNT(eventmanagement_task_relation_src) as total_tasks,
+            SUM(task.task_status = 1 OR task.task_status = 2) AS open_tasks
+        FROM eventmanagement_task_relation
+        LEFT JOIN task ON eventmanagement_task_relation.eventmanagement_task_relation_src = task.task_id
+        WHERE eventmanagement_task_relation_dst IN ({$eventIds});
+        SQL;
+
+        $query   = new Builder($this->app->dbPool->get());
+        $results = $query->raw($sql)->execute()?->fetchAll(\PDO::FETCH_ASSOC) ?? [];
+        foreach ($results as $result) {
+            $view->data['progress'][$result['id']] = (int) (($result['total_tasks'] - $result['open_tasks']) / $result['total_tasks']);
+        }
 
         return $view;
     }
