@@ -211,13 +211,13 @@
                 "null": false
             },
             "eventmanagement_event_attr_type_required": {
-                "description": "Every event must have this attribute type if set to true.",
+                "comment": "Every event must have this attribute type if set to true.",
                 "name": "eventmanagement_event_attr_type_required",
                 "type": "TINYINT(1)",
                 "null": false
             },
             "eventmanagement_event_attr_type_pattern": {
-                "description": "This is a regex validation pattern.",
+                "comment": "This is a regex validation pattern.",
                 "name": "eventmanagement_event_attr_type_pattern",
                 "type": "VARCHAR(255)",
                 "null": false
