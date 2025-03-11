@@ -91,20 +91,21 @@ final class BackendController extends Controller
 
         // Count tasks per event where tasks are used as progress indication
         $eventIds = \implode(',', $taskProgress);
+        if ($eventIds !== '') {
+            $sql = <<<SQL
+            SELECT eventmanagement_task_relation_dst as id,
+                COUNT(eventmanagement_task_relation_src) as total_tasks,
+                SUM(task.task_status = 1 OR task.task_status = 2) AS open_tasks
+            FROM eventmanagement_task_relation
+            LEFT JOIN task ON eventmanagement_task_relation.eventmanagement_task_relation_src = task.task_id
+            WHERE eventmanagement_task_relation_dst IN ({$eventIds});
+            SQL;
 
-        $sql = <<<SQL
-        SELECT eventmanagement_task_relation_dst as id,
-            COUNT(eventmanagement_task_relation_src) as total_tasks,
-            SUM(task.task_status = 1 OR task.task_status = 2) AS open_tasks
-        FROM eventmanagement_task_relation
-        LEFT JOIN task ON eventmanagement_task_relation.eventmanagement_task_relation_src = task.task_id
-        WHERE eventmanagement_task_relation_dst IN ({$eventIds});
-        SQL;
-
-        $query   = new Builder($this->app->dbPool->get());
-        $results = $query->raw($sql)->execute()?->fetchAll(\PDO::FETCH_ASSOC) ?? [];
-        foreach ($results as $result) {
-            $view->data['progress'][$result['id']] = (int) (($result['total_tasks'] - $result['open_tasks']) / $result['total_tasks']);
+            $query   = new Builder($this->app->dbPool->get());
+            $results = $query->raw($sql)->execute()?->fetchAll(\PDO::FETCH_ASSOC) ?? [];
+            foreach ($results as $result) {
+                $view->data['progress'][$result['id']] = (int) (($result['total_tasks'] - $result['open_tasks']) / $result['total_tasks']);
+            }
         }
 
         return $view;
