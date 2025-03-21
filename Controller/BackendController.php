@@ -167,7 +167,7 @@ final class BackendController extends Controller
         $view->data['medialist'] = $mediaListView;
 
         /** @var \Modules\EventManagement\Models\Event $event */
-        $event               = EventMapper::get()->where('id', (int) $request->getData('id'))->execute();
+        $event               = EventMapper::get()->where('id', $request->getDataInt('id') ?? 0)->execute();
         $view->data['event'] = $event;
 
         return $view;
